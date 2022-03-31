@@ -46,10 +46,125 @@ CREATE TABLE IF NOT EXISTS mitarbeiter
     Ort varchar,
     Email varchar,
     Gehalt int,
-    IBAN char(22), -- Länge IBAN ermitteln
+    IBAN char(22),
     BIC char(11),
     Vertretung_fuer int,
 
 	PRIMARY KEY (Steuer-ID),
 	CHECK (Gehalt >= 450  and Gehalt =< 3500) 
 );	
+
+-- Create the table "lieferant"
+CREATE TABLE IF NOT EXISTS lieferant
+ (
+   	Steuer-ID integer,
+    Vorname varchar,
+    Nachname varchar NOT NULL,
+    Strasse varchar,
+    Hausnummer int,
+    Postleitzahl int,
+    Ort varchar,
+    Email varchar,
+    Gehalt int,
+    IBAN char(22),
+    BIC char(11),
+    Fuehrerschein-ID char(11) NOT NULL, --Führerschein ID Länge prüfen
+    Vertretung_fuer int,
+
+	PRIMARY KEY (Steuer-ID),
+	CHECK (Gehalt >= 450  and Gehalt =< 3500) --Gehaltsbereiche anpassen
+);
+
+-- Create the table "koch"
+CREATE TABLE IF NOT EXISTS koch
+ (
+   	Steuer-ID integer,
+    Vorname varchar,
+    Nachname varchar NOT NULL,
+    Strasse varchar,
+    Hausnummer int,
+    Postleitzahl int,
+    Ort varchar,
+    Email varchar,
+    Gehalt int,
+    IBAN char(22),
+    BIC char(11),
+    Kuechenposten char(3) NOT NULL,
+    Vertretung_fuer int,
+
+	PRIMARY KEY (Steuer-ID),
+	CHECK (Gehalt >= 450  and Gehalt =< 3500) --Gehaltsbereiche anpassen
+);
+
+-- Create the table "lieferzone"
+CREATE TABLE IF NOT EXISTS lieferzone
+ (
+    Zonen-Nummer int,
+    Bezeichnung varchar,
+    Zustaendiger_Fahrer int,
+
+	PRIMARY KEY (Zonen-Nummer)
+);
+
+-- Create the table "kunde"
+CREATE TABLE IF NOT EXISTS kunde
+ (
+    Kunden-Nummer int,
+    Vorname varchar,
+    Nachname varchar NOT NULL,
+    Strasse varchar,
+    Hausnummer int,
+    Postleitzahl int,
+    Ort varchar,
+    Email varchar,
+
+	PRIMARY KEY (Kunden-Nummer)
+);
+
+-- Create the table "bestellung"
+CREATE TABLE IF NOT EXISTS bestellung
+ (
+    Bestell-Nummer int,
+    Zeitstempel datetime,
+    Artikelanzahl int,
+    Preis decimal,
+    zubereitet_von int,
+    ausgeliefert_von int,
+    erteilt_von int,
+    
+	PRIMARY KEY (Bestell-Nummer)
+);
+
+-- Create the table "artikel"
+CREATE TABLE IF NOT EXISTS artikel
+ (
+    Artikel-Nummer int,
+    Kategorie varchar,
+    Stueckpreis decimal,
+    
+	PRIMARY KEY (Artikel-Nummer)
+);
+
+-- Create the table "wein"
+CREATE TABLE IF NOT EXISTS wein
+ (
+    Artikel-Nummer int,
+    Kategorie varchar,
+    Stueckpreis decimal,
+    Jahrgang int,
+    Rebsorte varchar,
+    Vorrat int,
+    
+	PRIMARY KEY (Artikel-Nummer)
+);
+
+-- Create the table "pizza"
+CREATE TABLE IF NOT EXISTS pizza
+ (
+    Artikel-Nummer int,
+    Kategorie varchar,
+    Stueckpreis decimal,
+    Groesse char(6),
+    
+	PRIMARY KEY (Artikel-Nummer)
+);
