@@ -168,3 +168,53 @@ CREATE TABLE IF NOT EXISTS pizza
     
 	PRIMARY KEY (Artikel-Nummer)
 );
+
+-- Create the table "zutat"
+CREATE TABLE IF NOT EXISTS zutat
+ (
+    Zutaten-Nummer int,
+    Bezeichnung varchar,
+    Hersteller varchar,
+    vegetarisch? boolean,
+    Vorrat int,
+    
+	PRIMARY KEY (Zutaten-Nummer)
+);
+
+-- Create the table "besteht_aus"
+CREATE TABLE IF NOT EXISTS besteht_aus
+ (
+    Bestell-Nummer int,
+    Artikel-Nummer int,
+    
+	PRIMARY KEY (Bestell-Nummer, Artikel-Nummer)
+);
+
+-- Create the table "ist_belegt_mit"
+CREATE TABLE IF NOT EXISTS ist_belegt_mit
+ (
+    Artikel-Nummer int,
+    Zutaten-Nummer int,
+    
+	PRIMARY KEY (Artikel-Nummer, Zutaten-Nummer)
+);
+
+-- Create the table "Telefonnummern_Mitarbeiter"
+CREATE TABLE IF NOT EXISTS Telefonnummern_Mitarbeiter
+ (
+    Telefonnummer varchar,
+    Art char(8),
+    Besitzer_M int,
+    
+	PRIMARY KEY (Telefonnummer)
+);
+
+-- Create the table "Telefonnummern_Kunden"
+CREATE TABLE IF NOT EXISTS Telefonnummern_Kunden
+ (
+    Telefonnummer varchar,
+    Art char(8),
+    Besitzer_K int,
+    
+	PRIMARY KEY (Telefonnummer)
+);
