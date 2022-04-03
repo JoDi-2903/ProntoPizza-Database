@@ -292,15 +292,146 @@ ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
  * Fill tables with data
  */
 
-INSERT INTO mitarbeiter 
-VALUES (1, 'Paul', 'Müller', Null, '28.01.1975','m', '28.05.2014','DBA',61000,'EDM1',NULL),
-       (2, 'Rita', 'Schulze', 'Klein', '12.03.1981','w', '01.07.2016','Analy',48000,'EDM3',5),
-       (3, 'Claudia', 'Franz', Null, '07.02.1986','w', '1.10.2017','Test',40000,'EDM2',6),
-       (4, 'Karin', 'Schwarz', 'Breithans', '13.10.1978','w', '1.10.2011',default,56000,'EDM3',5),
-       (5, 'Werner', 'Meier', Null, '20.03.1968','m', '01.02.2010','Analy',80000,'EDM3',NULL),
-       (6, 'Klaus', 'Brecht', Null, '28.01.1977','m', '1.6.2011','PL',65000,'EDM2',Null),
-       (7, 'Florian', 'Habrecht', Null, '28.01.1985','m', '1.9.2017','Test',46000,'EDM2',6),
-       (8, 'Edith', 'Franz', 'Schmid', '17.03.1982','w', '1.3.2015',NULL,38000,'EDM1',6),
-       (9, 'Manfred', 'Klein', Null, '28.01.1990','m', '1.12.2018',NULL,32000,'EDM2',5),
-       (10,'Paul', 'Kunze', Null, '28.01.1975','m', '1.9.2014',NULL,55000,'EDM1',NULL)
+INSERT INTO lieferant
+VALUES (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3)
+;
+
+INSERT INTO koch
+VALUES (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3)
+;
+
+INSERT INTO lieferzone
+VALUES (1, 'Bezeichnung', 1),
+       (1, 'Bezeichnung', 1),
+       (1, 'Bezeichnung', 1),
+       (1, 'Bezeichnung', 1),
+       (1, 'Bezeichnung', 1),
+       (1, 'Bezeichnung', 1),
+       (1, 'Bezeichnung', 1),
+       (1, 'Bezeichnung', 1),
+       (1, 'Bezeichnung', 1)      
+;
+
+INSERT INTO kunde
+VALUES (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email')
+;
+
+INSERT INTO bestellung
+VALUES (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
+       (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
+       (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
+       (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
+       (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
+       (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1)
+;
+
+INSERT INTO wein
+VALUES (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+;
+
+INSERT INTO pizza
+VALUES (1, 'Speisen', 14.80, 'small'),
+       (1, 'Speisen', 14.80, 'small'),
+       (1, 'Speisen', 14.80, 'small'),
+       (1, 'Speisen', 14.80, 'small'),
+       (1, 'Speisen', 14.80, 'small'),
+       (1, 'Speisen', 14.80, 'small'),
+       (1, 'Speisen', 14.80, 'small'),
+       (1, 'Speisen', 14.80, 'small'),
+       (1, 'Speisen', 14.80, 'small'),
+       (1, 'Speisen', 14.80, 'small'),
+       (1, 'Speisen', 14.80, 'small')
+;
+
+INSERT INTO zutat
+VALUES (1, 'Salami', 'Tönies', false, 20),
+       (1, 'Salami', 'Tönies', false, 20),
+       (1, 'Salami', 'Tönies', false, 20),
+       (1, 'Salami', 'Tönies', false, 20),
+       (1, 'Salami', 'Tönies', false, 20),
+       (1, 'Salami', 'Tönies', false, 20),
+       (1, 'Salami', 'Tönies', false, 20),
+       (1, 'Salami', 'Tönies', false, 20),
+       (1, 'Salami', 'Tönies', false, 20),
+       (1, 'Salami', 'Tönies', false, 20),
+       (1, 'Salami', 'Tönies', false, 20)
+;
+
+INSERT INTO besteht_aus
+VALUES (1, 2),
+       (1, 2),
+       (1, 2),
+       (1, 2),
+       (1, 2),
+       (1, 2)
+;
+
+INSERT INTO ist_belegt_mit
+VALUES (1, 2),
+       (1, 2),
+       (1, 2),
+       (1, 2),
+       (1, 2),
+       (1, 2)
+;
+
+INSERT INTO telefonnummern_mitarbeiter
+VALUES ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1)
+;
+
+INSERT INTO telefonnummern_kunden
+VALUES ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1),
+       ('+49176123456', 'mobil', 1)
 ;
