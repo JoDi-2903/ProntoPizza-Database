@@ -48,7 +48,6 @@ CREATE TABLE IF NOT EXISTS mitarbeiter
     Gehalt int NOT NULL,
     IBAN char(22) NOT NULL,
     BIC char(11),
-    Vertretung_fuer int,
 
 	PRIMARY KEY (Steuer-ID),
 	CHECK (Gehalt >= 450  and Gehalt =< 3500) 
@@ -69,7 +68,6 @@ CREATE TABLE IF NOT EXISTS lieferant
     IBAN char(22) NOT NULL,
     BIC char(11),
     Fuehrerschein-ID char(11) NOT NULL,
-    Vertretung_fuer int,
 
 	PRIMARY KEY (Steuer-ID),
 	CHECK (Gehalt >= 450  and Gehalt =< 3500)
@@ -90,7 +88,6 @@ CREATE TABLE IF NOT EXISTS koch
     IBAN char(22) NOT NULL,
     BIC char(11),
     Kuechenposten char(3) NOT NULL,
-    Vertretung_fuer int,
 
 	PRIMARY KEY (Steuer-ID),
 	CHECK (Gehalt >= 450  and Gehalt =< 4000),
@@ -102,7 +99,6 @@ CREATE TABLE IF NOT EXISTS lieferzone
  (
     Zonen-Nummer int,
     Bezeichnung char(13),
-    Zustaendiger_Fahrer int,
 
 	PRIMARY KEY (Zonen-Nummer),
     CHECK (Bezeichnung IN ('Biberach', 'Boeckingen', 'Frankenbach', 'Horkheim', 'Kirchhausen', 'Klingenberg', 'Neckargartach', 'Sontheim'))
@@ -130,9 +126,6 @@ CREATE TABLE IF NOT EXISTS bestellung
     Zeitstempel datetime,
     Artikelanzahl int NOT NULL,
     Preis decimal NOT NULL,
-    zubereitet_von int,
-    ausgeliefert_von int,
-    erteilt_von int,
     
 	PRIMARY KEY (Bestell-Nummer)
 );
@@ -207,23 +200,93 @@ CREATE TABLE IF NOT EXISTS ist_belegt_mit
 );
 
 -- Create the table "Telefonnummern_Mitarbeiter"
-CREATE TABLE IF NOT EXISTS Telefonnummern_Mitarbeiter
+CREATE TABLE IF NOT EXISTS telefonnummern_mitarbeiter
  (
     Telefonnummer varchar,
     Art char(8),
-    Besitzer_M int NOT NULL,
     
 	PRIMARY KEY (Telefonnummer),
     CHECK (Art IN ('festnetz', 'mobil', 'fax'))
 );
 
 -- Create the table "Telefonnummern_Kunden"
-CREATE TABLE IF NOT EXISTS Telefonnummern_Kunden
+CREATE TABLE IF NOT EXISTS telefonnummern_kunden
  (
     Telefonnummer varchar,
     Art char(8),
-    Besitzer_K int NOT NULL,
     
 	PRIMARY KEY (Telefonnummer),
     CHECK (Art IN ('festnetz', 'mobil', 'fax'))
 );
+
+----------------------------------------------------------------------------------
+
+/*
+ * Insert Foreign Keys
+ */
+
+ -- Mitarbeiter
+ALTER TABLE mitarbeiter 
+ADD Vertretung_fuer int,
+ADD FOREIGN KEY(Vertretung_fuer) REFERENCES mitarbeiter
+;
+
+ -- Lieferant
+ALTER TABLE lieferant
+ADD Vertretung_fuer int,
+ADD FOREIGN KEY(Vertretung_fuer) REFERENCES lieferant
+;
+
+ -- Koch
+ALTER TABLE koch
+ADD Vertretung_fuer int,
+ADD FOREIGN KEY(Vertretung_fuer) REFERENCES koch
+;
+
+ -- Lieferzone
+ALTER TABLE lieferzone
+ADD Zustaendiger_Fahrer int,
+ADD FOREIGN KEY(Zustaendiger_Fahrer) REFERENCES lieferant
+;
+
+ -- Bestellung
+ALTER TABLE bestellung
+ADD zubereitet_von int,
+ADD ausgeliefert_von int,
+ADD erteilt_von int,
+ADD FOREIGN KEY(zubereitet_von) REFERENCES koch,
+ADD FOREIGN KEY(ausgeliefert_von) REFERENCES lieferant,
+ADD FOREIGN KEY(erteilt_von) REFERENCES kunde
+;
+
+ -- Telefonnummern_Mitarbeiter
+ALTER TABLE telefonnummern_mitarbeiter
+ADD Besitzer_M int,
+ADD FOREIGN KEY(Besitzer_M) REFERENCES mitarbeiter
+;
+
+ -- Telefonnummern_Kunden
+ALTER TABLE telefonnummern_kunden
+ADD Besitzer_K int,
+ADD FOREIGN KEY(Besitzer_K) REFERENCES kunde
+;
+
+ -- besteht_aus
+ALTER TABLE besteht_aus
+
+;
+
+ -- ist_belegt_mit
+ALTER TABLE ist_belegt_mit
+
+;
+
+
+
+
+-- BEISPIEL: Arbeitet_an
+
+ALTER TABLE  Arbeitet_an
+ADD Constraint arbeitet_an_Leistung_nr_fkey FOREIGN KEY(Auftrag_Nr, Leistung_Nr) REFERENCES Leistung,
+ADD FOREIGN KEY(Pers_Nr)  REFERENCES Mitarbeiter_Projekt
+;
