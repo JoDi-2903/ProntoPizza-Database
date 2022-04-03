@@ -293,26 +293,26 @@ ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
  */
 
 INSERT INTO lieferant
-VALUES (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3)
+VALUES (11, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (12, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (13, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (14, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (15, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (16, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (17, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (18, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (19, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (110, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3)
 ;
 
 INSERT INTO koch
-VALUES (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3)
+VALUES (21, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (22, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (23, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (24, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (25, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (26, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
+       (27, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3)
 ;
 
 INSERT INTO lieferzone
@@ -328,52 +328,52 @@ VALUES (10, 'Biberach', 1),
 
 INSERT INTO kunde
 VALUES (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email')
+       (2, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (3, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (4, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (5, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (6, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (7, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (8, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (9, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (10, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
+       (11, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email')
 ;
 
 INSERT INTO bestellung
-VALUES (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
-       (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
-       (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
-       (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
-       (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
-       (1, '2020-11-11 12:30', 10, 12.50, 1, 1, 1)
+VALUES (79274, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
+       (45156, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
+       (85383, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
+       (48852, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
+       (90749, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
+       (73397, '2020-11-11 12:30', 10, 12.50, 1, 1, 1)
 ;
 
 INSERT INTO wein
-VALUES (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (1, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+VALUES (3967, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (3598, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (1634, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (5592, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (7091, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (1431, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (3826, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (6684, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (7859, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+       (8489, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
 ;
 
 INSERT INTO pizza
-VALUES (1, 'Speisen', 14.80, 'small'),
-       (1, 'Speisen', 14.80, 'small'),
-       (1, 'Speisen', 14.80, 'small'),
-       (1, 'Speisen', 14.80, 'small'),
-       (1, 'Speisen', 14.80, 'small'),
-       (1, 'Speisen', 14.80, 'small'),
-       (1, 'Speisen', 14.80, 'small'),
-       (1, 'Speisen', 14.80, 'small'),
-       (1, 'Speisen', 14.80, 'small'),
-       (1, 'Speisen', 14.80, 'small'),
-       (1, 'Speisen', 14.80, 'small')
+VALUES (375, 'Speisen', 14.80, 'small'),
+       (815, 'Speisen', 14.80, 'small'),
+       (278, 'Speisen', 14.80, 'small'),
+       (253, 'Speisen', 14.80, 'small'),
+       (107, 'Speisen', 14.80, 'small'),
+       (814, 'Speisen', 14.80, 'small'),
+       (204, 'Speisen', 14.80, 'small'),
+       (569, 'Speisen', 14.80, 'small'),
+       (433, 'Speisen', 14.80, 'small'),
+       (319, 'Speisen', 14.80, 'small'),
+       (567, 'Speisen', 14.80, 'small')
 ;
 
 INSERT INTO zutat
@@ -442,3 +442,9 @@ VALUES ('+49 174 9464308', 'mobil', 1),
        ('06261 80 69 82', 'fax', 1),
        ('07261 65 65 66', 'fax', 1)
 ;
+
+----------------------------------------------------------------------------------
+
+/*
+ * Create deletion rules
+ */
