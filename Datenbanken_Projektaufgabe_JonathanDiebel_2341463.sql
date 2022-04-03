@@ -293,13 +293,16 @@ ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
  */
 
 INSERT INTO lieferant
-VALUES (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3),
-       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 3)
+VALUES (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3)
 ;
 
 INSERT INTO koch
@@ -313,15 +316,14 @@ VALUES (1, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmu
 ;
 
 INSERT INTO lieferzone
-VALUES (1, 'Bezeichnung', 1),
-       (1, 'Bezeichnung', 1),
-       (1, 'Bezeichnung', 1),
-       (1, 'Bezeichnung', 1),
-       (1, 'Bezeichnung', 1),
-       (1, 'Bezeichnung', 1),
-       (1, 'Bezeichnung', 1),
-       (1, 'Bezeichnung', 1),
-       (1, 'Bezeichnung', 1)      
+VALUES (10, 'Biberach', 1),
+       (20, 'Boeckingen', 1),
+       (30, 'Frankenbach', 1),
+       (40, 'Horkheim', 1),
+       (50, 'Kirchhausen', 1),
+       (60, 'Klingenberg', 1),
+       (70, 'Neckargartach', 1),
+       (80, 'Sontheim', 1)      
 ;
 
 INSERT INTO kunde
@@ -375,17 +377,21 @@ VALUES (1, 'Speisen', 14.80, 'small'),
 ;
 
 INSERT INTO zutat
-VALUES (1, 'Salami', 'Tönies', false, 20),
-       (1, 'Salami', 'Tönies', false, 20),
-       (1, 'Salami', 'Tönies', false, 20),
-       (1, 'Salami', 'Tönies', false, 20),
-       (1, 'Salami', 'Tönies', false, 20),
-       (1, 'Salami', 'Tönies', false, 20),
-       (1, 'Salami', 'Tönies', false, 20),
-       (1, 'Salami', 'Tönies', false, 20),
-       (1, 'Salami', 'Tönies', false, 20),
-       (1, 'Salami', 'Tönies', false, 20),
-       (1, 'Salami', 'Tönies', false, 20)
+VALUES (1, 'Salami', 'Wiltmann', false, 38),
+       (2, 'Ei', 'Geflügelhof Herrmann', true, 15),
+       (3, 'Schinken', 'Rügenwalder Mühle', false, 35),
+       (4, 'Artischocken', 'Horeca', true, 17),
+       (5, 'Ananas', 'ja!', true, 14),
+       (6, 'Champignons', 'Bonduelle', true, 23),
+       (7, 'Mais', 'Bonduelle', true, 33),
+       (8, 'Mozzarella', 'Galbani', true, 10),
+       (9, 'Paprika', 'Veronic', true, 18),
+       (10, 'Thunfisch', 'Saupiquet', false, 6),
+       (11, 'Oliven', 'Dittmann', true, 29),
+       (12, 'Zwiebeln', 'Bauernhof Maaßen', true, 42),
+       (13, 'Gyros', 'Eridanous', false, 20),
+       (14, 'Lachs', 'Top Mare', false, 8),
+       (15, 'Jalapenos', 'Kühne', true, 32)
 ;
 
 INSERT INTO besteht_aus
@@ -407,31 +413,32 @@ VALUES (1, 2),
 ;
 
 INSERT INTO telefonnummern_mitarbeiter
-VALUES ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1)
+VALUES ('+49 176 123456', 'mobil', 1),
+       ('+49 152 28817386', 'mobil', 1),
+       ('+49 152 54599371', 'mobil', 1),
+       ('+49 172 9968532', 'mobil', 1),
+       ('+49 172 9980752', 'mobil', 1),
+       ('07066 91750', 'festnetz', 1),
+       ('07131 81680', 'festnetz', 1),
+       ('07131 62967', 'festnetz', 1),
+       ('07066 06685', 'festnetz', 1),
+       ('07132 62781', 'festnetz', 1),
+       ('07141 78 99 57', 'fax', 1)
 ;
 
 INSERT INTO telefonnummern_kunden
-VALUES ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1),
-       ('+49176123456', 'mobil', 1)
+VALUES ('+49 174 9464308', 'mobil', 1),
+       ('+49 174 9091317', 'mobil', 1),
+       ('+49 172 9973185', 'mobil', 1),
+       ('+49 171 3920054', 'mobil', 1),
+       ('+49 171 3920084', 'mobil', 1),
+       ('+49 176 040694', 'mobil', 1),
+       ('09852 24854', 'festnetz', 1),
+       ('07132 19206', 'festnetz', 1),
+       ('07066 79669', 'festnetz', 1),
+       ('09852 49094', 'festnetz', 1),
+       ('07132 57565', 'festnetz', 1),
+       ('07066 23857', 'festnetz', 1),
+       ('06261 80 69 82', 'fax', 1),
+       ('07261 65 65 66', 'fax', 1)
 ;
