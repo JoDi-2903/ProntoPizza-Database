@@ -273,20 +273,12 @@ ADD FOREIGN KEY(Besitzer_K) REFERENCES kunde
 
  -- besteht_aus
 ALTER TABLE besteht_aus
-
+ADD FOREIGN KEY(Bestell-Nummer) REFERENCES bestellung
+ADD FOREIGN KEY(Artikel-Nummer) REFERENCES artikel
 ;
 
  -- ist_belegt_mit
 ALTER TABLE ist_belegt_mit
-
-;
-
-
-
-
--- BEISPIEL: Arbeitet_an
-
-ALTER TABLE  Arbeitet_an
-ADD Constraint arbeitet_an_Leistung_nr_fkey FOREIGN KEY(Auftrag_Nr, Leistung_Nr) REFERENCES Leistung,
-ADD FOREIGN KEY(Pers_Nr)  REFERENCES Mitarbeiter_Projekt
+ADD FOREIGN KEY(Artikel-Nummer) REFERENCES artikel
+ADD FOREIGN KEY(Zutaten-Nummer) REFERENCES zutat
 ;
