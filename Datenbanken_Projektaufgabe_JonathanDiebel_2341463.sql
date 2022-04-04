@@ -293,26 +293,26 @@ ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
  */
 
 INSERT INTO lieferant
-VALUES (11, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (12, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (13, 'Marcel', 'Friedman', 'Lerchenstraße', 42, 74189, 'Weinsberg', 'marcfried_77@hotmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (14, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (15, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (16, 'Lisa', 'Goldschmidt', 'Grolmanstraße', 11, 74081, 'Heilbronn', 'Lisa.G@einrot.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (17, 'Kristin', 'Nacht', 'Landsberger Allee', 94, 74211, 'Leingarten', 'Kristin.Nacht@web.de', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (18, 'Erik', 'Beike', 'Bleibtreustrasse', 56, 74074, 'Heilbronn', 'Expromen92@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (19, 'Thorsten', 'Müller', 'Langenhorner Chaussee', 47, 74189, 'Weinsberg', 'ThorstenHoffmail@gmx.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (110, 'Tim', 'Glockner', 'Kurfürstenstraße', 27, 74235, 'Erlenbach', 'TimGlockner@einrot.com', 1200, 'DE ', 'BIC', 'Führerschein', 3)
+VALUES (11, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE02120300000000202051', 'BYLADEM1001', 'B072RRE2I55', 3),
+       (12, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 1200, 'DE02500105170137075030', 'INGDDEFF', 'B3KX7HE7908', 3),
+       (13, 'Marcel', 'Friedman', 'Lerchenstraße', 42, 74189, 'Weinsberg', 'marcfried_77@hotmail.com', 1200, 'DE02100500000054540402', 'BELADEBE', 'S3Z3I1W7406', 3),
+       (14, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 1200, 'DE02300209000106531065', 'CMCIDEDD', 'P5383237889', 3),
+       (15, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 1200, 'DE02200505501015871393', 'HASPDEHH', 'Y2R191S8425', 3),
+       (16, 'Lisa', 'Goldschmidt', 'Grolmanstraße', 11, 74081, 'Heilbronn', 'Lisa.G@einrot.com', 1200, 'DE02100100100006820101', 'PBNKDEFF', 'H52P483DB47', 3),
+       (17, 'Kristin', 'Nacht', 'Landsberger Allee', 94, 74211, 'Leingarten', 'Kristin.Nacht@web.de', 1200, 'DE02300606010002474689', 'DAAEDEDD', 'G84D8025V15', 3),
+       (18, 'Erik', 'Beike', 'Bleibtreustrasse', 56, 74074, 'Heilbronn', 'Expromen92@gmail.com', 1200, 'DE02600501010002034304', 'SOLADEST600', 'X7V3239S540', 3),
+       (19, 'Thorsten', 'Müller', 'Langenhorner Chaussee', 47, 74189, 'Weinsberg', 'ThorstenHoffmail@gmx.com', 1200, 'DE02700202700010108669', 'HYVEDEMM', 'D891906H612', 3),
+       (110, 'Tim', 'Glockner', 'Kurfürstenstraße', 27, 74235, 'Erlenbach', 'TimGlockner@einrot.com', 1200, 'DE02700100800030876808', 'PBNKDEFF', 'C5025OP7095', 3)
 ;
 
 INSERT INTO koch
-VALUES (21, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn', 'Marcel.Baecker@web.de', 1200, 'DE ', 'BIC', 'PZA', 3),
-       (22, 'Artemia', 'Trevisano', 'Burgstraße', 2, 74172, 'Neckarsulm', 'Artemia79@gmail.com', 1200, 'DE ', 'BIC', 'PZA', 3),
-       (23, 'Lisandro', 'Calabresi', 'Mozartstraße', 15, 74078, 'Heilbronn', 'Calabresi_Lisandro@hotmail.com', 1200, 'DE ', 'BIC', 'VIN', 3),
-       (24, 'Prisca', 'Marcelo', 'Hans-Grade-Allee', 33, 74235, 'Erlenbach', 'Marcelo_P@gmail.com', 1200, 'DE ', 'BIC', 'PZA', 3),
-       (25, 'Virgilia', 'Gallo', 'Scharnweberstrasse', 97, 74223, 'Flein', 'Shomblue@gallo.it', 1200, 'DE ', 'BIC', 'PZA', 3),
-       (26, 'Patrick', 'Konig', 'Marseiller Strasse', 72, 74074, 'Heilbronn', 'P.Konig@gmx.de', 1200, 'DE ', 'BIC', 'AZU', 3),
-       (27, 'Luca', 'Stark', 'Hedemannstasse', 23, 74226, 'Nordheim', 'Luca.Stark@protonmail.ch', 1200, 'DE ', 'BIC', 'VIN', 3)
+VALUES (21, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn', 'Marcel.Baecker@web.de', 1200, 'DE02370502990000684712', 'COKSDE33', 'PZA', 3),
+       (22, 'Artemia', 'Trevisano', 'Burgstraße', 2, 74172, 'Neckarsulm', 'Artemia79@gmail.com', 1200, 'DE88100900001234567892', 'BEVODEBB', 'PZA', 3),
+       (23, 'Lisandro', 'Calabresi', 'Mozartstraße', 15, 74078, 'Heilbronn', 'Calabresi_Lisandro@hotmail.com', 1200, 'DE02701500000000594937', 'SSKMDEMM', 'VIN', 3),
+       (24, 'Prisca', 'Marcelo', 'Hans-Grade-Allee', 33, 74235, 'Erlenbach', 'Marcelo_P@gmail.com', 1200, 'DE43500105175367834115', 'HASPDEHH', 'PZA', 3),
+       (25, 'Virgilia', 'Gallo', 'Scharnweberstrasse', 97, 74223, 'Flein', 'Shomblue@gallo.it', 1200, 'DE77500105175183492181', 'PBNKDEFF', 'PZA', 3),
+       (26, 'Patrick', 'Konig', 'Marseiller Strasse', 72, 74074, 'Heilbronn', 'P.Konig@gmx.de', 1200, 'DE38500105177284374464', 'HEISDE66XXX', 'AZU', 3),
+       (27, 'Luca', 'Stark', 'Hedemannstasse', 23, 74226, 'Nordheim', 'Luca.Stark@protonmail.ch', 1200, 'DE35500105175458146691', 'SOLADEST600', 'VIN', 3)
 ;
 
 INSERT INTO lieferzone
