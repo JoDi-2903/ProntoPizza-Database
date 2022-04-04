@@ -94,17 +94,16 @@ CREATE TABLE IF NOT EXISTS koch
 	PRIMARY KEY (SteuerID),
 	CHECK (Gehalt BETWEEN 450 AND 3500),
     CHECK (SteuerID < 100000000000),
-    CHECK (Kuechenposten IN ('PZA', 'VIN', 'ABW', 'AZU'))
+    CHECK (Kuechenposten IN ('PZA', 'VIN', 'AZU'))
 );
 
 -- Create the table "lieferzone"
 CREATE TABLE IF NOT EXISTS lieferzone
  (
     ZonenNummer int,
-    Bezeichnung char(13),
+    Bezeichnung varchar NOT NULL,
 
-	PRIMARY KEY (ZonenNummer),
-    CHECK (Bezeichnung IN ('Biberach', 'Boeckingen', 'Frankenbach', 'Horkheim', 'Kirchhausen', 'Klingenberg', 'Neckargartach', 'Sontheim'))
+	PRIMARY KEY (ZonenNummer)
 );
 
 -- Create the table "kunde"
@@ -117,6 +116,7 @@ CREATE TABLE IF NOT EXISTS kunde
     Hausnummer int NOT NULL,
     Postleitzahl int NOT NULL,
     Ort varchar NOT NULL,
+    Stadtteil varchar NOT NULL,
     Email varchar,
 
 	PRIMARY KEY (KundenNummer)
@@ -294,25 +294,25 @@ ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
 
 INSERT INTO lieferant
 VALUES (11, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (12, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (13, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (14, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (15, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (16, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (17, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (18, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (19, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
-       (110, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3)
+       (12, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (13, 'Marcel', 'Friedman', 'Lerchenstraße', 42, 74189, 'Weinsberg', 'marcfried_77@hotmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (14, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (15, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (16, 'Lisa', 'Goldschmidt', 'Grolmanstraße', 11, 74081, 'Heilbronn', 'Lisa.G@einrot.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (17, 'Kristin', 'Nacht', 'Landsberger Allee', 94, 74211, 'Leingarten', 'Kristin.Nacht@web.de', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (18, 'Erik', 'Beike', 'Bleibtreustrasse', 56, 74074, 'Heilbronn', 'Expromen92@gmail.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (19, 'Thorsten', 'Müller', 'Langenhorner Chaussee', 47, 74189, 'Weinsberg', 'ThorstenHoffmail@gmx.com', 1200, 'DE ', 'BIC', 'Führerschein', 3),
+       (110, 'Tim', 'Glockner', 'Kurfürstenstraße', 27, 74235, 'Erlenbach', 'TimGlockner@einrot.com', 1200, 'DE ', 'BIC', 'Führerschein', 3)
 ;
 
 INSERT INTO koch
-VALUES (21, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (22, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (23, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (24, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (25, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (26, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3),
-       (27, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE ', 'BIC', '', 3)
+VALUES (21, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn', 'Marcel.Baecker@web.de', 1200, 'DE ', 'BIC', 'PZA', 3),
+       (22, 'Artemia', 'Trevisano', 'Burgstraße', 2, 74172, 'Neckarsulm', 'Artemia79@gmail.com', 1200, 'DE ', 'BIC', 'PZA', 3),
+       (23, 'Lisandro', 'Calabresi', 'Mozartstraße', 15, 74078, 'Heilbronn', 'Calabresi_Lisandro@hotmail.com', 1200, 'DE ', 'BIC', 'VIN', 3),
+       (24, 'Prisca', 'Marcelo', 'Hans-Grade-Allee', 33, 74235, 'Erlenbach', 'Marcelo_P@gmail.com', 1200, 'DE ', 'BIC', 'PZA', 3),
+       (25, 'Virgilia', 'Gallo', 'Scharnweberstrasse', 97, 74223, 'Flein', 'Shomblue@gallo.it', 1200, 'DE ', 'BIC', 'PZA', 3),
+       (26, 'Patrick', 'Konig', 'Marseiller Strasse', 72, 74074, 'Heilbronn', 'P.Konig@gmx.de', 1200, 'DE ', 'BIC', 'AZU', 3),
+       (27, 'Luca', 'Stark', 'Hedemannstasse', 23, 74226, 'Nordheim', 'Luca.Stark@protonmail.ch', 1200, 'DE ', 'BIC', 'VIN', 3)
 ;
 
 INSERT INTO lieferzone
@@ -327,17 +327,17 @@ VALUES (10, 'Biberach', 1),
 ;
 
 INSERT INTO kunde
-VALUES (1, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (2, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (3, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (4, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (5, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (6, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (7, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (8, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (9, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (10, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email'),
-       (11, 'Vorname', 'Nachname', 'Straße', 15, 74172, 'Ort', 'email')
+VALUES (1, 'Juliane', 'Kortig', 'Graf-Adolf-Straße', 67, 74078, 'Heilbronn', 'Biberach', 'Iteriabittem75@protonmail.com'),
+       (2, 'Christian', 'Neumann', 'Hausbrucher Kehre', 32, 74080, 'Heilbronn', 'Böckingen', 'ChristianNeumann@gmail.com'),
+       (3, 'Christine', 'Hertz', 'Eulenheckerweg', 20, 74078, 'Heilbronn', 'Frankenbach', 'Christa.Herz@aol.de'),
+       (4, 'Bernhard', 'Leis', 'Beethovenstraße', 15, 74074, 'Heilbronn', 'Sontheim', 'B.Leis@KabelBW.de'),
+       (5, 'Dominik', 'Kohler', 'Genslerstraße', 35, 74081, 'Heilbronn', 'Sontheim', 'Priet1983@gmx.de'),
+       (6, 'Klaudia', 'Schultz', 'Prüfeninger Straße', 4, 74078, 'Heilbronn', 'Neckargartach', 'claudia44@web.de'),
+       (7, 'Ilas', 'Senuysal', 'Marktstraße', 14, 74081, 'Heilbronn', 'Klingenberg', 'sen-shinigami@hotmail.com'),
+       (8, 'Uwe', 'Peters', 'Steinleweg', 86, 74078, 'Heilbronn', 'Biberach', 'uwe@peters.de'),
+       (9, 'Dirk', 'Holtzmann', 'Meinekestraße', 84, 74078, 'Heilbronn', 'Kirchhausen', 'dirk-ho-72@rethink.com'),
+       (10, 'Frank', 'Fleischer', 'Bleibtreustrasse', 71, 74081, 'Heilbronn', 'Horkheim', 'Frank@metzgerei-fleischer.de'),
+       (11, 'Nicole', 'Krüger', 'Schwingereiweg', 57, 74080, 'Heilbronn', 'Böckingen', 'ni.krueger@aol.de')
 ;
 
 INSERT INTO bestellung
