@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS wein
     
 	PRIMARY KEY (ArtikelNummer),
     CHECK (Kategorie IN ('Speisen', 'Getraenke')),
-    CHECK (Jahrgang BETWEEN 1990 AND date_part('year', CURRENT_DATE))
+    CHECK (Jahrgang BETWEEN 2005 AND date_part('year', CURRENT_DATE))
 );
 
 -- Create the table "pizza"
@@ -350,16 +350,16 @@ VALUES (79274, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
 ;
 
 INSERT INTO wein
-VALUES (3967, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (3598, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (1634, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (5592, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (7091, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (1431, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (3826, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (6684, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (7859, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
-       (8489, 'Getraenke', 14.80, 12.50, 2015, 'Trollinger', 15),
+VALUES (3967, 'Getraenke', 7.39, 2019, 'Chardonnay', 42),
+       (3598, 'Getraenke', 21.90, 2017, 'Corvina', 82),
+       (1634, 'Getraenke', 8.59, 2019, 'Nerello Mascalese', 77),
+       (5592, 'Getraenke', 6.99, 2021, 'Fiano', 124),
+       (7091, 'Getraenke', 19.95, 2020, 'Montepulciano', 92),
+       (1431, 'Getraenke', 7.40, 2021, 'Sangiovese', 63),
+       (3826, 'Getraenke', 8.80, 2015, 'Nerello Mascalese', 24),
+       (6684, 'Getraenke', 9.99, 2013, 'Gaglioppo', 12),
+       (7859, 'Getraenke', 14.25, 2017, 'Canaiolo', 40),
+       (8489, 'Getraenke', 18.80, 2012, 'Sauvignon Blanc', 8),
 ;
 
 INSERT INTO pizza
