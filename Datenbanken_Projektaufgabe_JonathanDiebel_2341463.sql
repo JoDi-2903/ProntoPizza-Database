@@ -4,7 +4,7 @@
  * Autor:            Jonathan Diebel
  * Matrikelnummer:   2341463
  * Erstelldatum:     31.03.2022
- * Letzte Änderung:  03.04.2022
+ * Letzte Änderung:  05.04.2022
  */
 
 ----------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ DROP TABLE if EXISTS telefonnummern_kunden;
 -- Create the table "mitarbeiter"
 CREATE TABLE IF NOT EXISTS mitarbeiter 
  (
-   	SteuerID integer,
+   	SteuerID bigint,
     Vorname varchar,
     Nachname varchar NOT NULL,
     Strasse varchar,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS mitarbeiter
 -- Create the table "lieferant"
 CREATE TABLE IF NOT EXISTS lieferant
  (
-   	SteuerID integer,
+   	SteuerID bigint,
     Vorname varchar,
     Nachname varchar NOT NULL,
     Strasse varchar,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS lieferant
 -- Create the table "koch"
 CREATE TABLE IF NOT EXISTS koch
  (
-   	SteuerID integer,
+   	SteuerID bigint,
     Vorname varchar,
     Nachname varchar NOT NULL,
     Strasse varchar,
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS artikel
  (
     ArtikelNummer int,
     Kategorie char(9),
-    Stueckpreis decimal,
+    Stueckpreis decimal NOT NULL,
     
 	PRIMARY KEY (ArtikelNummer),
     CHECK (Kategorie IN ('Speisen', 'Getraenke'))
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS wein
  (
     ArtikelNummer int,
     Kategorie char(9),
-    Stueckpreis decimal,
+    Stueckpreis decimal NOT NULL,
     Jahrgang int,
     Rebsorte varchar,
     Vorrat int,
@@ -169,8 +169,8 @@ CREATE TABLE IF NOT EXISTS pizza
     Kategorie char(9),
     Bezeichnung varchar,
     Zutatenanzahl int,
-    Stueckpreis decimal,
-    Groesse char(5),
+    Stueckpreis decimal NOT NULL,
+    Groesse char(5) default 'large',
     
 	PRIMARY KEY (ArtikelNummer),
     CHECK (Kategorie IN ('Speisen', 'Getraenke')),
@@ -236,32 +236,32 @@ CREATE TABLE IF NOT EXISTS telefonnummern_kunden
 
  -- Mitarbeiter
 ALTER TABLE mitarbeiter 
-ADD Vertretung_fuer int,
+ADD Vertretung_fuer bigint,
 ADD FOREIGN KEY(Vertretung_fuer) REFERENCES mitarbeiter
 ;
 
  -- Lieferant
 ALTER TABLE lieferant
-ADD Vertretung_fuer int,
+ADD Vertretung_fuer bigint,
 ADD FOREIGN KEY(Vertretung_fuer) REFERENCES lieferant
 ;
 
  -- Koch
 ALTER TABLE koch
-ADD Vertretung_fuer int,
+ADD Vertretung_fuer bigint,
 ADD FOREIGN KEY(Vertretung_fuer) REFERENCES koch
 ;
 
  -- Lieferzone
 ALTER TABLE lieferzone
-ADD Zustaendiger_Fahrer int,
+ADD Zustaendiger_Fahrer bigint,
 ADD FOREIGN KEY(Zustaendiger_Fahrer) REFERENCES lieferant
 ;
 
  -- Bestellung
 ALTER TABLE bestellung
-ADD zubereitet_von int,
-ADD ausgeliefert_von int,
+ADD zubereitet_von bigint,
+ADD ausgeliefert_von bigint,
 ADD erteilt_von int,
 ADD FOREIGN KEY(zubereitet_von) REFERENCES koch,
 ADD FOREIGN KEY(ausgeliefert_von) REFERENCES lieferant,
@@ -270,7 +270,7 @@ ADD FOREIGN KEY(erteilt_von) REFERENCES kunde
 
  -- Telefonnummern_Mitarbeiter
 ALTER TABLE telefonnummern_mitarbeiter
-ADD Besitzer_M int,
+ADD Besitzer_M bigint,
 ADD FOREIGN KEY(Besitzer_M) REFERENCES mitarbeiter
 ;
 
@@ -299,26 +299,26 @@ ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
  */
 
 INSERT INTO lieferant
-VALUES (101, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE02120300000000202051', 'BYLADEM1001', 'B072RRE2I55', 110),
-       (102, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 1200, 'DE02500105170137075030', 'INGDDEFF', 'B3KX7HE7908', 101,
+VALUES (101, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 450, 'DE02120300000000202051', 'BYLADEM1001', 'B072RRE2I55', 110),
+       (102, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 2300, 'DE02500105170137075030', 'INGDDEFF', 'B3KX7HE7908', 101,
        (103, 'Marcel', 'Friedman', 'Lerchenstraße', 42, 74189, 'Weinsberg', 'marcfried_77@hotmail.com', 1200, 'DE02100500000054540402', 'BELADEBE', 'S3Z3I1W7406', 102),
-       (104, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 1200, 'DE02300209000106531065', 'CMCIDEDD', 'P5383237889', 103),
-       (105, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 1200, 'DE02200505501015871393', 'HASPDEHH', 'Y2R191S8425', 104),
-       (106, 'Lisa', 'Goldschmidt', 'Grolmanstraße', 11, 74081, 'Heilbronn', 'Lisa.G@einrot.com', 1200, 'DE02100100100006820101', 'PBNKDEFF', 'H52P483DB47', 105),
+       (104, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 450, 'DE02300209000106531065', 'CMCIDEDD', 'P5383237889', 103),
+       (105, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 450, 'DE02200505501015871393', 'HASPDEHH', 'Y2R191S8425', 104),
+       (106, 'Lisa', 'Goldschmidt', 'Grolmanstraße', 11, 74081, 'Heilbronn', 'Lisa.G@einrot.com', 2300, 'DE02100100100006820101', 'PBNKDEFF', 'H52P483DB47', 105),
        (107, 'Kristin', 'Nacht', 'Landsberger Allee', 94, 74211, 'Leingarten', 'Kristin.Nacht@web.de', 1200, 'DE02300606010002474689', 'DAAEDEDD', 'G84D8025V15', 106),
-       (108, 'Erik', 'Beike', 'Bleibtreustrasse', 56, 74074, 'Heilbronn', 'Expromen92@gmail.com', 1200, 'DE02600501010002034304', 'SOLADEST600', 'X7V3239S540', 107),
-       (109, 'Thorsten', 'Müller', 'Langenhorner Chaussee', 47, 74189, 'Weinsberg', 'ThorstenHoffmail@gmx.com', 1200, 'DE02700202700010108669', 'HYVEDEMM', 'D891906H612', 108),
+       (108, 'Erik', 'Beike', 'Bleibtreustrasse', 56, 74074, 'Heilbronn', 'Expromen92@gmail.com', 450, 'DE02600501010002034304', 'SOLADEST600', 'X7V3239S540', 107),
+       (109, 'Thorsten', 'Müller', 'Langenhorner Chaussee', 47, 74189, 'Weinsberg', 'ThorstenHoffmail@gmx.com', 2300, 'DE02700202700010108669', 'HYVEDEMM', 'D891906H612', 108),
        (110, 'Tim', 'Glockner', 'Kurfürstenstraße', 27, 74235, 'Erlenbach', 'TimGlockner@einrot.com', 1200, 'DE02700100800030876808', 'PBNKDEFF', 'C5025OP7095', 109)
 ;
 
 INSERT INTO koch
-VALUES (201, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn', 'Marcel.Baecker@web.de', 1200, 'DE02370502990000684712', 'COKSDE33', 'PZA', 205),
-       (202, 'Artemia', 'Trevisano', 'Burgstraße', 2, 74172, 'Neckarsulm', 'Artemia79@gmail.com', 1200, 'DE88100900001234567892', 'BEVODEBB', 'PZA', 201),
-       (203, 'Lisandro', 'Calabresi', 'Mozartstraße', 15, 74078, 'Heilbronn', 'Calabresi_Lisandro@hotmail.com', 1200, 'DE02701500000000594937', 'SSKMDEMM', 'VIN', 207),
-       (204, 'Prisca', 'Marcelo', 'Hans-Grade-Allee', 33, 74235, 'Erlenbach', 'Marcelo_P@gmail.com', 1200, 'DE43500105175367834115', 'HASPDEHH', 'PZA', 202),
-       (205, 'Virgilia', 'Gallo', 'Scharnweberstrasse', 97, 74223, 'Flein', 'Shomblue@gallo.it', 1200, 'DE77500105175183492181', 'PBNKDEFF', 'PZA', 204),
-       (206, 'Patrick', 'Konig', 'Marseiller Strasse', 72, 74074, 'Heilbronn', 'P.Konig@gmx.de', 1200, 'DE38500105177284374464', 'HEISDE66XXX', 'AZU', NULL),
-       (207, 'Luca', 'Stark', 'Hedemannstasse', 23, 74226, 'Nordheim', 'Luca.Stark@protonmail.ch', 1200, 'DE35500105175458146691', 'SOLADEST600', 'VIN', 203)
+VALUES (201, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn', 'Marcel.Baecker@web.de', 2400, 'DE02370502990000684712', 'COKSDE33', 'PZA', 205),
+       (202, 'Artemia', 'Trevisano', 'Burgstraße', 2, 74172, 'Neckarsulm', 'Artemia79@gmail.com', 1300, 'DE88100900001234567892', 'BEVODEBB', 'PZA', 201),
+       (203, 'Lisandro', 'Calabresi', 'Mozartstraße', 15, 74078, 'Heilbronn', 'Calabresi_Lisandro@hotmail.com', 1900, 'DE02701500000000594937', 'SSKMDEMM', 'VIN', 207),
+       (204, 'Prisca', 'Marcelo', 'Hans-Grade-Allee', 33, 74235, 'Erlenbach', 'Marcelo_P@gmail.com', 2400, 'DE43500105175367834115', 'HASPDEHH', 'PZA', 202),
+       (205, 'Virgilia', 'Gallo', 'Scharnweberstrasse', 97, 74223, 'Flein', 'Shomblue@gallo.it', 1300, 'DE77500105175183492181', 'PBNKDEFF', 'PZA', 204),
+       (206, 'Patrick', 'Konig', 'Marseiller Strasse', 72, 74074, 'Heilbronn', 'P.Konig@gmx.de', 850, 'DE38500105177284374464', 'HEISDE66XXX', 'AZU', NULL),
+       (207, 'Luca', 'Stark', 'Hedemannstasse', 23, 74226, 'Nordheim', 'Luca.Stark@protonmail.ch', 1900, 'DE35500105175458146691', 'SOLADEST600', 'VIN', 203)
 ;
 
 INSERT INTO lieferzone
