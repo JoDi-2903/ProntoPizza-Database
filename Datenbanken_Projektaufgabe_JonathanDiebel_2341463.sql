@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS pizza
     Bezeichnung varchar,
     Zutatenanzahl int,
     Stueckpreis decimal NOT NULL,
-    Groesse char(5) default 'large',
+    Groesse char(6) default 'large',
     
 	PRIMARY KEY (ArtikelNummer),
     CHECK (Kategorie IN ('Speisen', 'Getraenke')),
@@ -271,7 +271,7 @@ ADD FOREIGN KEY(erteilt_von) REFERENCES kunde
  -- Telefonnummern_Mitarbeiter
 ALTER TABLE telefonnummern_mitarbeiter
 ADD Besitzer_M bigint,
-ADD FOREIGN KEY(Besitzer_M) REFERENCES mitarbeiter
+ADD FOREIGN KEY(Besitzer_M) REFERENCES mitarbeiter -- lieferant oder koch, mitarbeiter enthält keine Zeilen
 ;
 
  -- Telefonnummern_Kunden
@@ -283,7 +283,7 @@ ADD FOREIGN KEY(Besitzer_K) REFERENCES kunde
  -- besteht_aus
 ALTER TABLE besteht_aus
 ADD FOREIGN KEY(BestellNummer) REFERENCES bestellung,
-ADD FOREIGN KEY(ArtikelNummer) REFERENCES artikel
+ADD FOREIGN KEY(ArtikelNummer) REFERENCES artikel -- pizza oder wein,  artikel enthält keine zeilen
 ;
 
  -- ist_belegt_mit
@@ -300,7 +300,7 @@ ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
 
 INSERT INTO lieferant
 VALUES (96310507402, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 450, 'DE02120300000000202051', 'BYLADEM1001', 'B072RRE2I55', 86309472539),
-       (32141675193, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 2300, 'DE02500105170137075030', 'INGDDEFF', 'B3KX7HE7908', 96310507402,
+       (32141675193, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 2300, 'DE02500105170137075030', 'INGDDEFF', 'B3KX7HE7908', 96310507402),
        (43051895764, 'Marcel', 'Friedman', 'Lerchenstraße', 42, 74189, 'Weinsberg', 'marcfried_77@hotmail.com', 1200, 'DE02100500000054540402', 'BELADEBE', 'S3Z3I1W7406', 32141675193),
        (78409681858, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 450, 'DE02300209000106531065', 'CMCIDEDD', 'P5383237889', 43051895764),
        (45963187729, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 450, 'DE02200505501015871393', 'HASPDEHH', 'Y2R191S8425', 78409681858),
@@ -372,7 +372,7 @@ VALUES (372, 'Speisen', 'Margherita', 2, 6.80, 'large'),
        (202, 'Speisen', 'Hawaii', 4, 7.90, 'large'),
        (442, 'Speisen', 'Capricciosa', 5, 8.10, 'large'),
        (432, 'Speisen', 'Quattro Stagioni', 7, 9.20, 'large'),
-       (312, 'Speisen', 'Bella Capri', 8, 10.00, 'large'),
+       (312, 'Speisen', 'Bella Capri', 7, 10.00, 'large'),
        (562, 'Speisen', 'Greca', 5, 8.10, 'large'),
        (371, 'Speisen', 'Margherita', 2, 5.30, 'small'),
        (191, 'Speisen', 'Salami', 3, 6.00, 'small'),
@@ -405,19 +405,18 @@ VALUES (1, 'Salami', 'Wiltmann', false, 38),
        (17, 'Geriebener Käse', 'Finello', true, 51)
 ;
 
-INSERT INTO besteht_aus
+INSERT INTO besteht_aus --Schlüssel (artikelnummer)=(442) ist nicht in Tabelle »artikel« vorhanden.
 VALUES (79274, 442),
        (79274, 191),
-
-       (45156, 202),
-       (45156, 432),
+       (45156, 202), --FEHLER:  doppelter Schlüsselwert verletzt Unique-Constraint »besteht_aus_pkey«
+       (45156, 432), --FEHLER:  doppelter Schlüsselwert verletzt Unique-Constraint »besteht_aus_pkey«
        (45156, 442),
        (45156, 371),
        (45156, 252),
        (45156, 312),
        (45156, 191),
-       (45156, 202),
-       (45156, 432),
+       --(45156, 202), --Schlüssel »(bestellnummer, artikelnummer)=(45156, 202)« existiert bereits.
+       --(45156, 432), --Schlüssel »(bestellnummer, artikelnummer)=(45156, 432)« existiert bereits.
        (45156, 562),
        (45156, 1634),
        (45156, 3826),
@@ -430,12 +429,12 @@ VALUES (79274, 442),
        (48852, 202),
        (48852, 8489),
        (90749, 3598),
-       (90749, 5592),
-       (90749, 5592),
+       (90749, 5592), --FEHLER:  doppelter Schlüsselwert verletzt Unique-Constraint »besteht_aus_pkey«
+       --(90749, 5592), --Schlüssel »(bestellnummer, artikelnummer)=(90749, 5592)« existiert bereits.
        (90749, 3826),
        (90749, 1431),
-       (73397, 812),
-       (73397, 812),
+       (73397, 812), --FEHLER:  doppelter Schlüsselwert verletzt Unique-Constraint »besteht_aus_pkey«
+       --(73397, 812), --Schlüssel »(bestellnummer, artikelnummer)=(73397, 812)« existiert bereits.
        (73397, 442),
        (73397, 372),
        (73397, 6684),
@@ -479,7 +478,6 @@ VALUES (372, 16),
        (312, 17),
        (312, 4),
        (312, 6),
-       (312, 3),
        (312, 1),
        (312, 11),
        (312, 2),
@@ -511,11 +509,10 @@ VALUES (372, 16),
        (194, 1),
        (274, 16),
        (274, 17),
-       (274, 3),
-       
+       (274, 3)
 ;
 
-INSERT INTO telefonnummern_mitarbeiter
+INSERT INTO telefonnummern_mitarbeiter --Schlüssel (besitzer_m)=(96310507402) ist nicht in Tabelle »mitarbeiter« vorhanden.
 VALUES ('+49 176 123456', 'mobil', 96310507402),
        ('+49 152 28817386', 'mobil', 42859220670),
        ('+49 152 54599371', 'mobil', 80363942737),
