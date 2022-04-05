@@ -293,37 +293,32 @@ ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
  */
 
 INSERT INTO lieferant
-VALUES (11, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE02120300000000202051', 'BYLADEM1001', 'B072RRE2I55', 3),
-       (12, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 1200, 'DE02500105170137075030', 'INGDDEFF', 'B3KX7HE7908', 3),
-       (13, 'Marcel', 'Friedman', 'Lerchenstraße', 42, 74189, 'Weinsberg', 'marcfried_77@hotmail.com', 1200, 'DE02100500000054540402', 'BELADEBE', 'S3Z3I1W7406', 3),
-       (14, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 1200, 'DE02300209000106531065', 'CMCIDEDD', 'P5383237889', 3),
-       (15, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 1200, 'DE02200505501015871393', 'HASPDEHH', 'Y2R191S8425', 3),
-       (16, 'Lisa', 'Goldschmidt', 'Grolmanstraße', 11, 74081, 'Heilbronn', 'Lisa.G@einrot.com', 1200, 'DE02100100100006820101', 'PBNKDEFF', 'H52P483DB47', 3),
-       (17, 'Kristin', 'Nacht', 'Landsberger Allee', 94, 74211, 'Leingarten', 'Kristin.Nacht@web.de', 1200, 'DE02300606010002474689', 'DAAEDEDD', 'G84D8025V15', 3),
-       (18, 'Erik', 'Beike', 'Bleibtreustrasse', 56, 74074, 'Heilbronn', 'Expromen92@gmail.com', 1200, 'DE02600501010002034304', 'SOLADEST600', 'X7V3239S540', 3),
-       (19, 'Thorsten', 'Müller', 'Langenhorner Chaussee', 47, 74189, 'Weinsberg', 'ThorstenHoffmail@gmx.com', 1200, 'DE02700202700010108669', 'HYVEDEMM', 'D891906H612', 3),
-       (110, 'Tim', 'Glockner', 'Kurfürstenstraße', 27, 74235, 'Erlenbach', 'TimGlockner@einrot.com', 1200, 'DE02700100800030876808', 'PBNKDEFF', 'C5025OP7095', 3)
+VALUES (101, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 1200, 'DE02120300000000202051', 'BYLADEM1001', 'B072RRE2I55', 110),
+       (102, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 1200, 'DE02500105170137075030', 'INGDDEFF', 'B3KX7HE7908', 101,
+       (103, 'Marcel', 'Friedman', 'Lerchenstraße', 42, 74189, 'Weinsberg', 'marcfried_77@hotmail.com', 1200, 'DE02100500000054540402', 'BELADEBE', 'S3Z3I1W7406', 102),
+       (104, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 1200, 'DE02300209000106531065', 'CMCIDEDD', 'P5383237889', 103),
+       (105, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 1200, 'DE02200505501015871393', 'HASPDEHH', 'Y2R191S8425', 104),
+       (106, 'Lisa', 'Goldschmidt', 'Grolmanstraße', 11, 74081, 'Heilbronn', 'Lisa.G@einrot.com', 1200, 'DE02100100100006820101', 'PBNKDEFF', 'H52P483DB47', 105),
+       (107, 'Kristin', 'Nacht', 'Landsberger Allee', 94, 74211, 'Leingarten', 'Kristin.Nacht@web.de', 1200, 'DE02300606010002474689', 'DAAEDEDD', 'G84D8025V15', 106),
+       (108, 'Erik', 'Beike', 'Bleibtreustrasse', 56, 74074, 'Heilbronn', 'Expromen92@gmail.com', 1200, 'DE02600501010002034304', 'SOLADEST600', 'X7V3239S540', 107),
+       (109, 'Thorsten', 'Müller', 'Langenhorner Chaussee', 47, 74189, 'Weinsberg', 'ThorstenHoffmail@gmx.com', 1200, 'DE02700202700010108669', 'HYVEDEMM', 'D891906H612', 108),
+       (110, 'Tim', 'Glockner', 'Kurfürstenstraße', 27, 74235, 'Erlenbach', 'TimGlockner@einrot.com', 1200, 'DE02700100800030876808', 'PBNKDEFF', 'C5025OP7095', 109)
 ;
 
 INSERT INTO koch
-VALUES (21, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn', 'Marcel.Baecker@web.de', 1200, 'DE02370502990000684712', 'COKSDE33', 'PZA', 3),
-       (22, 'Artemia', 'Trevisano', 'Burgstraße', 2, 74172, 'Neckarsulm', 'Artemia79@gmail.com', 1200, 'DE88100900001234567892', 'BEVODEBB', 'PZA', 3),
-       (23, 'Lisandro', 'Calabresi', 'Mozartstraße', 15, 74078, 'Heilbronn', 'Calabresi_Lisandro@hotmail.com', 1200, 'DE02701500000000594937', 'SSKMDEMM', 'VIN', 3),
-       (24, 'Prisca', 'Marcelo', 'Hans-Grade-Allee', 33, 74235, 'Erlenbach', 'Marcelo_P@gmail.com', 1200, 'DE43500105175367834115', 'HASPDEHH', 'PZA', 3),
-       (25, 'Virgilia', 'Gallo', 'Scharnweberstrasse', 97, 74223, 'Flein', 'Shomblue@gallo.it', 1200, 'DE77500105175183492181', 'PBNKDEFF', 'PZA', 3),
-       (26, 'Patrick', 'Konig', 'Marseiller Strasse', 72, 74074, 'Heilbronn', 'P.Konig@gmx.de', 1200, 'DE38500105177284374464', 'HEISDE66XXX', 'AZU', 3),
-       (27, 'Luca', 'Stark', 'Hedemannstasse', 23, 74226, 'Nordheim', 'Luca.Stark@protonmail.ch', 1200, 'DE35500105175458146691', 'SOLADEST600', 'VIN', 3)
+VALUES (201, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn', 'Marcel.Baecker@web.de', 1200, 'DE02370502990000684712', 'COKSDE33', 'PZA', 205),
+       (202, 'Artemia', 'Trevisano', 'Burgstraße', 2, 74172, 'Neckarsulm', 'Artemia79@gmail.com', 1200, 'DE88100900001234567892', 'BEVODEBB', 'PZA', 201),
+       (203, 'Lisandro', 'Calabresi', 'Mozartstraße', 15, 74078, 'Heilbronn', 'Calabresi_Lisandro@hotmail.com', 1200, 'DE02701500000000594937', 'SSKMDEMM', 'VIN', 207),
+       (204, 'Prisca', 'Marcelo', 'Hans-Grade-Allee', 33, 74235, 'Erlenbach', 'Marcelo_P@gmail.com', 1200, 'DE43500105175367834115', 'HASPDEHH', 'PZA', 202),
+       (205, 'Virgilia', 'Gallo', 'Scharnweberstrasse', 97, 74223, 'Flein', 'Shomblue@gallo.it', 1200, 'DE77500105175183492181', 'PBNKDEFF', 'PZA', 204),
+       (206, 'Patrick', 'Konig', 'Marseiller Strasse', 72, 74074, 'Heilbronn', 'P.Konig@gmx.de', 1200, 'DE38500105177284374464', 'HEISDE66XXX', 'AZU', NULL),
+       (207, 'Luca', 'Stark', 'Hedemannstasse', 23, 74226, 'Nordheim', 'Luca.Stark@protonmail.ch', 1200, 'DE35500105175458146691', 'SOLADEST600', 'VIN', 203)
 ;
 
 INSERT INTO lieferzone
-VALUES (10, 'Biberach', 1),
-       (20, 'Boeckingen', 1),
-       (30, 'Frankenbach', 1),
-       (40, 'Horkheim', 1),
-       (50, 'Kirchhausen', 1),
-       (60, 'Klingenberg', 1),
-       (70, 'Neckargartach', 1),
-       (80, 'Sontheim', 1)      
+VALUES (10, 'Boeckingen-Heilbronn-Neckargartach', 102),
+       (20, 'Biberach-Frankenbach-Kirchhausen', 109),
+       (30, 'Horkheim-Klingenberg-Sontheim', 106)      
 ;
 
 INSERT INTO kunde
@@ -428,19 +423,19 @@ VALUES ('+49 176 123456', 'mobil', 1),
 
 INSERT INTO telefonnummern_kunden
 VALUES ('+49 174 9464308', 'mobil', 1),
-       ('+49 174 9091317', 'mobil', 1),
-       ('+49 172 9973185', 'mobil', 1),
-       ('+49 171 3920054', 'mobil', 1),
-       ('+49 171 3920084', 'mobil', 1),
-       ('+49 176 040694', 'mobil', 1),
-       ('09852 24854', 'festnetz', 1),
-       ('07132 19206', 'festnetz', 1),
-       ('07066 79669', 'festnetz', 1),
-       ('09852 49094', 'festnetz', 1),
-       ('07132 57565', 'festnetz', 1),
-       ('07066 23857', 'festnetz', 1),
-       ('06261 80 69 82', 'fax', 1),
-       ('07261 65 65 66', 'fax', 1)
+       ('+49 174 9091317', 'mobil', 2),
+       ('+49 172 9973185', 'mobil', 4),
+       ('+49 171 3920054', 'mobil', 5),
+       ('+49 171 3920084', 'mobil', 8),
+       ('+49 176 040694', 'mobil', 9),
+       ('09852 24854', 'festnetz', 3),
+       ('07132 19206', 'festnetz', 4),
+       ('07066 79669', 'festnetz', 6),
+       ('09852 49094', 'festnetz', 7),
+       ('07132 57565', 'festnetz', 10),
+       ('07066 23857', 'festnetz', 11),
+       ('06261 80 69 82', 'fax', 6),
+       ('07261 65 65 66', 'fax', 8)
 ;
 
 ----------------------------------------------------------------------------------
