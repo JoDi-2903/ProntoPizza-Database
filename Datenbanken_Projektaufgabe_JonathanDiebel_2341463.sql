@@ -299,32 +299,32 @@ ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
  */
 
 INSERT INTO lieferant
-VALUES (101, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 450, 'DE02120300000000202051', 'BYLADEM1001', 'B072RRE2I55', 110),
-       (102, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 2300, 'DE02500105170137075030', 'INGDDEFF', 'B3KX7HE7908', 101,
-       (103, 'Marcel', 'Friedman', 'Lerchenstraße', 42, 74189, 'Weinsberg', 'marcfried_77@hotmail.com', 1200, 'DE02100500000054540402', 'BELADEBE', 'S3Z3I1W7406', 102),
-       (104, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 450, 'DE02300209000106531065', 'CMCIDEDD', 'P5383237889', 103),
-       (105, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 450, 'DE02200505501015871393', 'HASPDEHH', 'Y2R191S8425', 104),
-       (106, 'Lisa', 'Goldschmidt', 'Grolmanstraße', 11, 74081, 'Heilbronn', 'Lisa.G@einrot.com', 2300, 'DE02100100100006820101', 'PBNKDEFF', 'H52P483DB47', 105),
-       (107, 'Kristin', 'Nacht', 'Landsberger Allee', 94, 74211, 'Leingarten', 'Kristin.Nacht@web.de', 1200, 'DE02300606010002474689', 'DAAEDEDD', 'G84D8025V15', 106),
-       (108, 'Erik', 'Beike', 'Bleibtreustrasse', 56, 74074, 'Heilbronn', 'Expromen92@gmail.com', 450, 'DE02600501010002034304', 'SOLADEST600', 'X7V3239S540', 107),
-       (109, 'Thorsten', 'Müller', 'Langenhorner Chaussee', 47, 74189, 'Weinsberg', 'ThorstenHoffmail@gmx.com', 2300, 'DE02700202700010108669', 'HYVEDEMM', 'D891906H612', 108),
-       (110, 'Tim', 'Glockner', 'Kurfürstenstraße', 27, 74235, 'Erlenbach', 'TimGlockner@einrot.com', 1200, 'DE02700100800030876808', 'PBNKDEFF', 'C5025OP7095', 109)
+VALUES (96310507402, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 450, 'DE02120300000000202051', 'BYLADEM1001', 'B072RRE2I55', 86309472539),
+       (32141675193, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 2300, 'DE02500105170137075030', 'INGDDEFF', 'B3KX7HE7908', 96310507402,
+       (43051895764, 'Marcel', 'Friedman', 'Lerchenstraße', 42, 74189, 'Weinsberg', 'marcfried_77@hotmail.com', 1200, 'DE02100500000054540402', 'BELADEBE', 'S3Z3I1W7406', 32141675193),
+       (78409681858, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 450, 'DE02300209000106531065', 'CMCIDEDD', 'P5383237889', 43051895764),
+       (45963187729, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 450, 'DE02200505501015871393', 'HASPDEHH', 'Y2R191S8425', 78409681858),
+       (40087531266, 'Lisa', 'Goldschmidt', 'Grolmanstraße', 11, 74081, 'Heilbronn', 'Lisa.G@einrot.com', 2300, 'DE02100100100006820101', 'PBNKDEFF', 'H52P483DB47', 45963187729),
+       (96215843551, 'Kristin', 'Nacht', 'Landsberger Allee', 94, 74211, 'Leingarten', 'Kristin.Nacht@web.de', 1200, 'DE02300606010002474689', 'DAAEDEDD', 'G84D8025V15', 40087531266),
+       (16540669728, 'Erik', 'Beike', 'Bleibtreustrasse', 56, 74074, 'Heilbronn', 'Expromen92@gmail.com', 450, 'DE02600501010002034304', 'SOLADEST600', 'X7V3239S540', 96215843551),
+       (40857352952, 'Thorsten', 'Müller', 'Langenhorner Chaussee', 47, 74189, 'Weinsberg', 'ThorstenHoffmail@gmx.com', 2300, 'DE02700202700010108669', 'HYVEDEMM', 'D891906H612', 16540669728),
+       (86309472539, 'Tim', 'Glockner', 'Kurfürstenstraße', 27, 74235, 'Erlenbach', 'TimGlockner@einrot.com', 1200, 'DE02700100800030876808', 'PBNKDEFF', 'C5025OP7095', 40857352952)
 ;
 
 INSERT INTO koch
-VALUES (201, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn', 'Marcel.Baecker@web.de', 2400, 'DE02370502990000684712', 'COKSDE33', 'PZA', 205),
-       (202, 'Artemia', 'Trevisano', 'Burgstraße', 2, 74172, 'Neckarsulm', 'Artemia79@gmail.com', 1300, 'DE88100900001234567892', 'BEVODEBB', 'PZA', 201),
-       (203, 'Lisandro', 'Calabresi', 'Mozartstraße', 15, 74078, 'Heilbronn', 'Calabresi_Lisandro@hotmail.com', 1900, 'DE02701500000000594937', 'SSKMDEMM', 'VIN', 207),
-       (204, 'Prisca', 'Marcelo', 'Hans-Grade-Allee', 33, 74235, 'Erlenbach', 'Marcelo_P@gmail.com', 2400, 'DE43500105175367834115', 'HASPDEHH', 'PZA', 202),
-       (205, 'Virgilia', 'Gallo', 'Scharnweberstrasse', 97, 74223, 'Flein', 'Shomblue@gallo.it', 1300, 'DE77500105175183492181', 'PBNKDEFF', 'PZA', 204),
-       (206, 'Patrick', 'Konig', 'Marseiller Strasse', 72, 74074, 'Heilbronn', 'P.Konig@gmx.de', 850, 'DE38500105177284374464', 'HEISDE66XXX', 'AZU', NULL),
-       (207, 'Luca', 'Stark', 'Hedemannstasse', 23, 74226, 'Nordheim', 'Luca.Stark@protonmail.ch', 1900, 'DE35500105175458146691', 'SOLADEST600', 'VIN', 203)
+VALUES (80363942737, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn', 'Marcel.Baecker@web.de', 2400, 'DE02370502990000684712', 'COKSDE33', 'PZA', 37121904867),
+       (73169652609, 'Artemia', 'Trevisano', 'Burgstraße', 2, 74172, 'Neckarsulm', 'Artemia79@gmail.com', 1300, 'DE88100900001234567892', 'BEVODEBB', 'PZA', 80363942737),
+       (42859220670, 'Lisandro', 'Calabresi', 'Mozartstraße', 15, 74078, 'Heilbronn', 'Calabresi_Lisandro@hotmail.com', 1900, 'DE02701500000000594937', 'SSKMDEMM', 'VIN', 37709628516),
+       (69930147859, 'Prisca', 'Marcelo', 'Hans-Grade-Allee', 33, 74235, 'Erlenbach', 'Marcelo_P@gmail.com', 2400, 'DE43500105175367834115', 'HASPDEHH', 'PZA', 73169652609),
+       (37121904867, 'Virgilia', 'Gallo', 'Scharnweberstrasse', 97, 74223, 'Flein', 'Shomblue@gallo.it', 1300, 'DE77500105175183492181', 'PBNKDEFF', 'PZA', 69930147859),
+       (38260927129, 'Patrick', 'Konig', 'Marseiller Strasse', 72, 74074, 'Heilbronn', 'P.Konig@gmx.de', 850, 'DE38500105177284374464', 'HEISDE66XXX', 'AZU', NULL),
+       (37709628516, 'Luca', 'Stark', 'Hedemannstasse', 23, 74226, 'Nordheim', 'Luca.Stark@protonmail.ch', 1900, 'DE35500105175458146691', 'SOLADEST600', 'VIN', 42859220670)
 ;
 
 INSERT INTO lieferzone
-VALUES (10, 'Boeckingen-Heilbronn-Neckargartach', 102),
-       (20, 'Biberach-Frankenbach-Kirchhausen', 109),
-       (30, 'Horkheim-Klingenberg-Sontheim', 106)
+VALUES (10, 'Boeckingen-Heilbronn-Neckargartach', 32141675193),
+       (20, 'Biberach-Frankenbach-Kirchhausen', 40857352952),
+       (30, 'Horkheim-Klingenberg-Sontheim', 40087531266)
 ;
 
 INSERT INTO kunde
@@ -342,12 +342,12 @@ VALUES (1, 'Juliane', 'Kortig', 'Graf-Adolf-Straße', 67, 74078, 'Heilbronn', 'B
 ;
 
 INSERT INTO bestellung
-VALUES (79274, '2022-04-08 17:24:39', 2, 0, 14.10, 204, 102, 2),
-       (45156, '2022-04-08 18:05:34', 10, 3, 111.94, 201, 102, 6),
-       (85383, '2022-04-08 18:31:25', 1, 2, 34.89, 206, 109, 9),
-       (48852, '2022-04-08 18:48:35', 3, 1, 50.00, 204, 106, 10),
-       (90749, '2022-04-08 19:12:52', 0, 5, 52.08, 207, 109, 8),
-       (73397, '2022-04-08 19:19:57', 4, 2, 47.88, 201, 106, 4)
+VALUES (79274, '2022-04-08 17:24:39', 2, 0, 14.10, 69930147859, 32141675193, 2),
+       (45156, '2022-04-08 18:05:34', 10, 3, 111.94, 80363942737, 32141675193, 6),
+       (85383, '2022-04-08 18:31:25', 1, 2, 34.89, 38260927129, 40857352952, 9),
+       (48852, '2022-04-08 18:48:35', 3, 1, 50.00, 69930147859, 40087531266, 10),
+       (90749, '2022-04-08 19:12:52', 0, 5, 52.08, 37709628516, 40857352952, 8),
+       (73397, '2022-04-08 19:19:57', 4, 2, 47.88, 80363942737, 40087531266, 4)
 ;
 
 INSERT INTO wein
@@ -516,17 +516,17 @@ VALUES (372, 16),
 ;
 
 INSERT INTO telefonnummern_mitarbeiter
-VALUES ('+49 176 123456', 'mobil', 1),
-       ('+49 152 28817386', 'mobil', 1),
-       ('+49 152 54599371', 'mobil', 1),
-       ('+49 172 9968532', 'mobil', 1),
-       ('+49 172 9980752', 'mobil', 1),
-       ('07066 91750', 'festnetz', 1),
-       ('07131 81680', 'festnetz', 1),
-       ('07131 62967', 'festnetz', 1),
-       ('07066 06685', 'festnetz', 1),
-       ('07132 62781', 'festnetz', 1),
-       ('07141 78 99 57', 'fax', 1)
+VALUES ('+49 176 123456', 'mobil', 96310507402),
+       ('+49 152 28817386', 'mobil', 42859220670),
+       ('+49 152 54599371', 'mobil', 80363942737),
+       ('+49 172 9968532', 'mobil', 96215843551),
+       ('+49 172 9980752', 'mobil', 69930147859),
+       ('07066 91750', 'festnetz', 32141675193),
+       ('07131 81680', 'festnetz', 43051895764),
+       ('07131 62967', 'festnetz', 78409681858),
+       ('07066 06685', 'festnetz', 38260927129),
+       ('07132 62781', 'festnetz', 16540669728),
+       ('07141 78 99 57', 'fax', 78409681858)
 ;
 
 INSERT INTO telefonnummern_kunden
