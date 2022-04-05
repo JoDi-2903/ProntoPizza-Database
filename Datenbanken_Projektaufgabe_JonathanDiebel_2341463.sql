@@ -127,11 +127,13 @@ CREATE TABLE IF NOT EXISTS bestellung
  (
     BestellNummer int,
     Zeitstempel timestamp,
-    Artikelanzahl int NOT NULL,
+    AnzahlSpeisen int NOT NULL,
+    AnzahlGetraenke int NOT NULL,
     Preis decimal NOT NULL,
     
 	PRIMARY KEY (BestellNummer),
-    CHECK (Artikelanzahl > 0)
+    CHECK (AnzahlSpeisen + AnzahlGetraenke > 0),
+    CHECK (AnzahlSpeisen BETWEEN 0 AND 10)
 );
 
 -- Create the table "artikel"
@@ -340,12 +342,12 @@ VALUES (1, 'Juliane', 'Kortig', 'Graf-Adolf-Straße', 67, 74078, 'Heilbronn', 'B
 ;
 
 INSERT INTO bestellung
-VALUES (79274, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
-       (45156, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
-       (85383, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
-       (48852, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
-       (90749, '2020-11-11 12:30', 10, 12.50, 1, 1, 1),
-       (73397, '2020-11-11 12:30', 10, 12.50, 1, 1, 1)
+VALUES (79274, '2022-04-08 17:24:39', 2, 0, 12.50, 204, 102, 2), // Speisen Getränke // koch lieferant Kunde
+       (45156, '2022-04-08 18:05:34', 10, 3, 12.50, 201, 102, 6),
+       (85383, '2022-04-08 18:31:25', 1, 2, 12.50, 206, 109, 9),
+       (48852, '2022-04-08 18:48:35', 3, 1, 12.50, 204, 106, 10),
+       (90749, '2022-04-08 19:12:52', 0, 5, 12.50, 207, 109, 8),
+       (73397, '2022-04-08 19:19:57', 4, 2, 12.50, 201, 106, 4)
 ;
 
 INSERT INTO wein
