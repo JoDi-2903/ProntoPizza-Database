@@ -130,7 +130,8 @@ CREATE TABLE IF NOT EXISTS bestellung
     Artikelanzahl int NOT NULL,
     Preis decimal NOT NULL,
     
-	PRIMARY KEY (BestellNummer)
+	PRIMARY KEY (BestellNummer),
+    CHECK (Artikelanzahl > 0)
 );
 
 -- Create the table "artikel"
@@ -164,12 +165,15 @@ CREATE TABLE IF NOT EXISTS pizza
  (
     ArtikelNummer int,
     Kategorie char(9),
+    Bezeichnung varchar,
+    Zutatenanzahl int,
     Stueckpreis decimal,
-    Groesse char(6),
+    Groesse char(5),
     
 	PRIMARY KEY (ArtikelNummer),
     CHECK (Kategorie IN ('Speisen', 'Getraenke')),
-    CHECK (Groesse IN ('small', 'medium', 'large', 'family', 'party'))
+    CHECK (Zutatenanzahl BETWEEN 2 AND 7),
+    CHECK (Groesse IN ('small', 'large', 'family', 'party'))
 );
 
 -- Create the table "zutat"
@@ -282,7 +286,7 @@ ADD FOREIGN KEY(ArtikelNummer) REFERENCES artikel
 
  -- ist_belegt_mit
 ALTER TABLE ist_belegt_mit
-ADD FOREIGN KEY(ArtikelNummer) REFERENCES artikel,
+ADD FOREIGN KEY(ArtikelNummer) REFERENCES pizza,
 ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
 ;
 
@@ -318,15 +322,15 @@ VALUES (201, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn'
 INSERT INTO lieferzone
 VALUES (10, 'Boeckingen-Heilbronn-Neckargartach', 102),
        (20, 'Biberach-Frankenbach-Kirchhausen', 109),
-       (30, 'Horkheim-Klingenberg-Sontheim', 106)      
+       (30, 'Horkheim-Klingenberg-Sontheim', 106)
 ;
 
 INSERT INTO kunde
 VALUES (1, 'Juliane', 'Kortig', 'Graf-Adolf-Straße', 67, 74078, 'Heilbronn', 'Biberach', 'Iteriabittem75@protonmail.com'),
-       (2, 'Christian', 'Neumann', 'Hausbrucher Kehre', 32, 74080, 'Heilbronn', 'Böckingen', 'ChristianNeumann@gmail.com'),
+       (2, 'Christian', 'Neumann', 'Hausbrucher Kehre', 32, 74076, 'Heilbronn', 'Heilbronn', 'ChristianNeumann@gmail.com'),
        (3, 'Christine', 'Hertz', 'Eulenheckerweg', 20, 74078, 'Heilbronn', 'Frankenbach', 'Christa.Herz@aol.de'),
        (4, 'Bernhard', 'Leis', 'Beethovenstraße', 15, 74074, 'Heilbronn', 'Sontheim', 'B.Leis@KabelBW.de'),
-       (5, 'Dominik', 'Kohler', 'Genslerstraße', 35, 74081, 'Heilbronn', 'Sontheim', 'Priet1983@gmx.de'),
+       (5, 'Dominik', 'Kohler', 'Genslerstraße', 35, 74072, 'Heilbronn', 'Heilbronn', 'Priet1983@gmx.de'),
        (6, 'Klaudia', 'Schultz', 'Prüfeninger Straße', 4, 74078, 'Heilbronn', 'Neckargartach', 'claudia44@web.de'),
        (7, 'Ilas', 'Senuysal', 'Marktstraße', 14, 74081, 'Heilbronn', 'Klingenberg', 'sen-shinigami@hotmail.com'),
        (8, 'Uwe', 'Peters', 'Steinleweg', 86, 74078, 'Heilbronn', 'Biberach', 'uwe@peters.de'),
@@ -358,17 +362,16 @@ VALUES (3967, 'Getraenke', 7.39, 2019, 'Chardonnay', 42),
 ;
 
 INSERT INTO pizza
-VALUES (375, 'Speisen', 14.80, 'small'),
-       (815, 'Speisen', 14.80, 'small'),
-       (278, 'Speisen', 14.80, 'small'),
-       (253, 'Speisen', 14.80, 'small'),
-       (107, 'Speisen', 14.80, 'small'),
-       (814, 'Speisen', 14.80, 'small'),
-       (204, 'Speisen', 14.80, 'small'),
-       (569, 'Speisen', 14.80, 'small'),
-       (433, 'Speisen', 14.80, 'small'),
-       (319, 'Speisen', 14.80, 'small'),
-       (567, 'Speisen', 14.80, 'small')
+VALUES (375, 'Speisen', 'Margherita', 2, 6.80, 'large'),
+       (815, 'Speisen', 'Salami', 3, 7.50, 'large'),
+       (278, 'Speisen', 'Schinken', 3, 7.50, 'large'),
+       (253, 'Speisen', 'Marche', 4, 8.60, 'large'),
+       (814, 'Speisen', 'Fantasia', 4, 7.80, 'large'),
+       (204, 'Speisen', 'Hawaii', 4, 7.90, 'large'),
+       (569, 'Speisen', 'Capricciosa', 5, 8.10, 'large'),
+       (433, 'Speisen', 'Quattro Stagioni', 7, 9.20, 'large'),
+       (319, 'Speisen', 'Bella Capri', 8, 10.00, 'large'),
+       (567, 'Speisen', 'Greca', 5, 8.90, 'large')
 ;
 
 INSERT INTO zutat
@@ -386,7 +389,9 @@ VALUES (1, 'Salami', 'Wiltmann', false, 38),
        (12, 'Zwiebeln', 'Bauernhof Maaßen', true, 42),
        (13, 'Gyros', 'Eridanous', false, 20),
        (14, 'Lachs', 'Top Mare', false, 8),
-       (15, 'Jalapenos', 'Kühne', true, 32)
+       (15, 'Jalapenos', 'Kühne', true, 32),
+       (16, 'Tomatensoße', 'Pomito', true, 72),
+       (17, 'Geriebener Käse', 'Finello', true, 51)
 ;
 
 INSERT INTO besteht_aus
@@ -399,12 +404,52 @@ VALUES (1, 2),
 ;
 
 INSERT INTO ist_belegt_mit
-VALUES (1, 2),
-       (1, 2),
-       (1, 2),
-       (1, 2),
-       (1, 2),
-       (1, 2)
+VALUES (375, 16),
+       (375, 8),
+       (815, 16),
+       (815, 17),
+       (815, 1),
+       (278, 16),
+       (278, 17),
+       (278, 3),
+       (253, 16),
+       (253, 17),
+       (253, 10),
+       (253, 12),
+       (814, 16),
+       (814, 17),
+       (814, 6),
+       (814, 3),
+       (204, 16),
+       (204, 17),
+       (204, 5),
+       (204, 3),
+       (569, 16),
+       (569, 17),
+       (569, 9),
+       (569, 3),
+       (569, 1),
+       (433, 16),
+       (433, 17),
+       (433, 4),
+       (433, 6),
+       (433, 9),
+       (433, 3),
+       (433, 1),
+       (319, 16),
+       (319, 17),
+       (319, 4),
+       (319, 6),
+       (319, 3),
+       (319, 1),
+       (319, 11),
+       (319, 2),
+       (567, 16),
+       (567, 17),
+       (567, 13),
+       (567, 15),
+       (567, 7),
+       
 ;
 
 INSERT INTO telefonnummern_mitarbeiter
