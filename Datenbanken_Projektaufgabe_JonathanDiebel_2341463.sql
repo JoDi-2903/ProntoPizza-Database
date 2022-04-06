@@ -204,27 +204,33 @@ CREATE TABLE IF NOT EXISTS telefonnummern_kunden
 ----------------------------------------------------------------------------------
 
 /*
- * Insert Foreign Keys
+ * Insert Foreign Keys, 
+ * Create deletion rules
  */
 
  -- Lieferant
 ALTER TABLE lieferant
 ADD Vertretung_fuer bigint,
-ADD FOREIGN KEY(Vertretung_fuer) REFERENCES lieferant,
+ADD FOREIGN KEY(Vertretung_fuer) REFERENCES lieferant
+ON DELETE Set NULL,
 ADD FOREIGN KEY(SteuerID) REFERENCES mitarbeiter
+ON DELETE CASCADE
 ;
 
  -- Koch
 ALTER TABLE koch
 ADD Vertretung_fuer bigint,
-ADD FOREIGN KEY(Vertretung_fuer) REFERENCES koch,
+ADD FOREIGN KEY(Vertretung_fuer) REFERENCES koch
+ON DELETE Set NULL,
 ADD FOREIGN KEY(SteuerID) REFERENCES mitarbeiter
+ON DELETE CASCADE
 ;
 
  -- Lieferzone
 ALTER TABLE lieferzone
 ADD Zustaendiger_Fahrer bigint,
 ADD FOREIGN KEY(Zustaendiger_Fahrer) REFERENCES lieferant
+ON DELETE Set NULL
 ;
 
  -- Bestellung
@@ -232,43 +238,54 @@ ALTER TABLE bestellung
 ADD zubereitet_von bigint,
 ADD ausgeliefert_von bigint,
 ADD erteilt_von int,
-ADD FOREIGN KEY(zubereitet_von) REFERENCES koch,
-ADD FOREIGN KEY(ausgeliefert_von) REFERENCES lieferant,
+ADD FOREIGN KEY(zubereitet_von) REFERENCES koch
+ON DELETE Set NULL,
+ADD FOREIGN KEY(ausgeliefert_von) REFERENCES lieferant
+ON DELETE Set NULL,
 ADD FOREIGN KEY(erteilt_von) REFERENCES kunde
+ON DELETE CASCADE
 ;
 
 -- Wein
 ALTER TABLE wein
 ADD FOREIGN KEY(ArtikelNummer) REFERENCES artikel
+ON DELETE CASCADE
 ;
 
 -- Pizza
 ALTER TABLE pizza
 ADD FOREIGN KEY(ArtikelNummer) REFERENCES artikel
+ON DELETE CASCADE
 ;
 
  -- Telefonnummern_Mitarbeiter
 ALTER TABLE telefonnummern_mitarbeiter
 ADD Besitzer_M bigint,
 ADD FOREIGN KEY(Besitzer_M) REFERENCES mitarbeiter
+ON DELETE CASCADE
 ;
 
  -- Telefonnummern_Kunden
 ALTER TABLE telefonnummern_kunden
 ADD Besitzer_K int,
 ADD FOREIGN KEY(Besitzer_K) REFERENCES kunde
+ON DELETE CASCADE
 ;
 
  -- besteht_aus
 ALTER TABLE besteht_aus
-ADD FOREIGN KEY(BestellNummer) REFERENCES bestellung,
+ADD FOREIGN KEY(BestellNummer) REFERENCES bestellung
+ON DELETE CASCADE,
 ADD FOREIGN KEY(ArtikelNummer) REFERENCES artikel
+ON DELETE RESTRICT -- Artikel bereits in aktiver Bestellung vorhanden, würde er gelöscht wäre Kunde sauer
 ;
 
  -- ist_belegt_mit
 ALTER TABLE ist_belegt_mit
-ADD FOREIGN KEY(ArtikelNummer) REFERENCES pizza,
+ADD FOREIGN KEY(ArtikelNummer) REFERENCES pizza
+ON DELETE CASCADE,
 ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
+ON DELETE CASCADE
 ;
 
 ----------------------------------------------------------------------------------
@@ -571,7 +588,4 @@ VALUES ('+49 174 9464308', 'mobil', 1),
 ;
 
 ----------------------------------------------------------------------------------
-
-/*
- * Create deletion rules
- */
+-- END OF FILE
