@@ -4,7 +4,7 @@
  * Autor:            Jonathan Diebel
  * Matrikelnummer:   2341463
  * Erstelldatum:     31.03.2022
- * Letzte Änderung:  05.04.2022
+ * Letzte Änderung:  06.04.2022
  */
 
 ----------------------------------------------------------------------------------
@@ -58,20 +58,9 @@ CREATE TABLE IF NOT EXISTS mitarbeiter
 CREATE TABLE IF NOT EXISTS lieferant
  (
    	SteuerID bigint,
-    Vorname varchar,
-    Nachname varchar NOT NULL,
-    Strasse varchar,
-    Hausnummer int,
-    Postleitzahl int,
-    Ort varchar,
-    Email varchar,
-    Gehalt int NOT NULL,
-    IBAN char(22) NOT NULL,
-    BIC char(11),
     FuehrerscheinID char(11) NOT NULL,
 
 	PRIMARY KEY (SteuerID),
-	CHECK (Gehalt BETWEEN 450 AND 3500),
     CHECK (SteuerID < 100000000000)
 );
 
@@ -79,20 +68,9 @@ CREATE TABLE IF NOT EXISTS lieferant
 CREATE TABLE IF NOT EXISTS koch
  (
    	SteuerID bigint,
-    Vorname varchar,
-    Nachname varchar NOT NULL,
-    Strasse varchar,
-    Hausnummer int,
-    Postleitzahl int,
-    Ort varchar,
-    Email varchar,
-    Gehalt int NOT NULL,
-    IBAN char(22) NOT NULL,
-    BIC char(11),
     Kuechenposten char(3) NOT NULL,
 
 	PRIMARY KEY (SteuerID),
-	CHECK (Gehalt BETWEEN 450 AND 3500),
     CHECK (SteuerID < 100000000000),
     CHECK (Kuechenposten IN ('PZA', 'VIN', 'AZU'))
 );
@@ -151,14 +129,11 @@ CREATE TABLE IF NOT EXISTS artikel
 CREATE TABLE IF NOT EXISTS wein
  (
     ArtikelNummer int,
-    Kategorie char(9),
-    Stueckpreis decimal NOT NULL,
     Jahrgang int,
     Rebsorte varchar,
     Vorrat int,
     
 	PRIMARY KEY (ArtikelNummer),
-    CHECK (Kategorie IN ('Speisen', 'Getraenke')),
     CHECK (Jahrgang BETWEEN 2005 AND date_part('year', CURRENT_DATE))
 );
 
@@ -166,14 +141,11 @@ CREATE TABLE IF NOT EXISTS wein
 CREATE TABLE IF NOT EXISTS pizza
  (
     ArtikelNummer int,
-    Kategorie char(9),
     Bezeichnung varchar,
     Zutatenanzahl int,
-    Stueckpreis decimal NOT NULL,
     Groesse char(6) default 'large',
     
 	PRIMARY KEY (ArtikelNummer),
-    CHECK (Kategorie IN ('Speisen', 'Getraenke')),
     CHECK (Zutatenanzahl BETWEEN 2 AND 7),
     CHECK (Groesse IN ('small', 'large', 'family', 'party'))
 );
@@ -195,6 +167,7 @@ CREATE TABLE IF NOT EXISTS besteht_aus
  (
     BestellNummer int,
     ArtikelNummer int,
+    Menge int,
     
 	PRIMARY KEY (BestellNummer, ArtikelNummer)
 );
@@ -234,22 +207,18 @@ CREATE TABLE IF NOT EXISTS telefonnummern_kunden
  * Insert Foreign Keys
  */
 
- -- Mitarbeiter
-ALTER TABLE mitarbeiter 
-ADD Vertretung_fuer bigint,
-ADD FOREIGN KEY(Vertretung_fuer) REFERENCES mitarbeiter
-;
-
  -- Lieferant
 ALTER TABLE lieferant
 ADD Vertretung_fuer bigint,
 ADD FOREIGN KEY(Vertretung_fuer) REFERENCES lieferant
+ADD FOREIGN KEY(SteuerID) REFERENCES mitarbeiter
 ;
 
  -- Koch
 ALTER TABLE koch
 ADD Vertretung_fuer bigint,
 ADD FOREIGN KEY(Vertretung_fuer) REFERENCES koch
+ADD FOREIGN KEY(SteuerID) REFERENCES mitarbeiter
 ;
 
  -- Lieferzone
@@ -268,10 +237,20 @@ ADD FOREIGN KEY(ausgeliefert_von) REFERENCES lieferant,
 ADD FOREIGN KEY(erteilt_von) REFERENCES kunde
 ;
 
+-- Wein
+ALTER TABLE wein
+ADD FOREIGN KEY(ArtikelNummer) REFERENCES artikel
+;
+
+-- Pizza
+ALTER TABLE pizza
+ADD FOREIGN KEY(ArtikelNummer) REFERENCES artikel
+;
+
  -- Telefonnummern_Mitarbeiter
 ALTER TABLE telefonnummern_mitarbeiter
 ADD Besitzer_M bigint,
-ADD FOREIGN KEY(Besitzer_M) REFERENCES mitarbeiter -- lieferant oder koch, mitarbeiter enthält keine Zeilen
+ADD FOREIGN KEY(Besitzer_M) REFERENCES mitarbeiter
 ;
 
  -- Telefonnummern_Kunden
@@ -283,7 +262,7 @@ ADD FOREIGN KEY(Besitzer_K) REFERENCES kunde
  -- besteht_aus
 ALTER TABLE besteht_aus
 ADD FOREIGN KEY(BestellNummer) REFERENCES bestellung,
-ADD FOREIGN KEY(ArtikelNummer) REFERENCES artikel -- pizza oder wein,  artikel enthält keine zeilen
+ADD FOREIGN KEY(ArtikelNummer) REFERENCES artikel
 ;
 
  -- ist_belegt_mit
@@ -298,27 +277,47 @@ ADD FOREIGN KEY(ZutatenNummer) REFERENCES zutat
  * Fill tables with data
  */
 
+ INSERT INTO mitarbeiter
+ VALUES (96310507402, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 450, 'DE02120300000000202051', 'BYLADEM1001'),
+        (32141675193, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 2300, 'DE02500105170137075030', 'INGDDEFF'),
+        (43051895764, 'Marcel', 'Friedman', 'Lerchenstraße', 42, 74189, 'Weinsberg', 'marcfried_77@hotmail.com', 1200, 'DE02100500000054540402', 'BELADEBE'),
+        (78409681858, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 450, 'DE02300209000106531065', 'CMCIDEDD'),
+        (45963187729, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 450, 'DE02200505501015871393', 'HASPDEHH'),
+        (40087531266, 'Lisa', 'Goldschmidt', 'Grolmanstraße', 11, 74081, 'Heilbronn', 'Lisa.G@einrot.com', 2300, 'DE02100100100006820101', 'PBNKDEFF'),
+        (96215843551, 'Kristin', 'Nacht', 'Landsberger Allee', 94, 74211, 'Leingarten', 'Kristin.Nacht@web.de', 1200, 'DE02300606010002474689', 'DAAEDEDD'),
+        (16540669728, 'Erik', 'Beike', 'Bleibtreustrasse', 56, 74074, 'Heilbronn', 'Expromen92@gmail.com', 450, 'DE02600501010002034304', 'SOLADEST600'),
+        (40857352952, 'Thorsten', 'Müller', 'Langenhorner Chaussee', 47, 74189, 'Weinsberg', 'ThorstenHoffmail@gmx.com', 2300, 'DE02700202700010108669', 'HYVEDEMM'),
+        (86309472539, 'Tim', 'Glockner', 'Kurfürstenstraße', 27, 74235, 'Erlenbach', 'TimGlockner@einrot.com', 1200, 'DE02700100800030876808', 'PBNKDEFF'),
+        (80363942737, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn', 'Marcel.Baecker@web.de', 2400, 'DE02370502990000684712', 'COKSDE33'),
+        (73169652609, 'Artemia', 'Trevisano', 'Burgstraße', 2, 74172, 'Neckarsulm', 'Artemia79@gmail.com', 1300, 'DE88100900001234567892', 'BEVODEBB'),
+        (42859220670, 'Lisandro', 'Calabresi', 'Mozartstraße', 15, 74078, 'Heilbronn', 'Calabresi_Lisandro@hotmail.com', 1900, 'DE02701500000000594937', 'SSKMDEMM'),
+        (69930147859, 'Prisca', 'Marcelo', 'Hans-Grade-Allee', 33, 74235, 'Erlenbach', 'Marcelo_P@gmail.com', 2400, 'DE43500105175367834115', 'HASPDEHH'),
+        (37121904867, 'Virgilia', 'Gallo', 'Scharnweberstrasse', 97, 74223, 'Flein', 'Shomblue@gallo.it', 1300, 'DE77500105175183492181', 'PBNKDEFF'),
+        (38260927129, 'Patrick', 'Konig', 'Marseiller Strasse', 72, 74074, 'Heilbronn', 'P.Konig@gmx.de', 850, 'DE38500105177284374464', 'HEISDE66XXX'),
+        (37709628516, 'Luca', 'Stark', 'Hedemannstasse', 23, 74226, 'Nordheim', 'Luca.Stark@protonmail.ch', 1900, 'DE35500105175458146691', 'SOLADEST600')
+;
+
 INSERT INTO lieferant
-VALUES (96310507402, 'Paul', 'Müller', 'Lerchenstraße', 42, 74172, 'Neckarsulm', 'paulmuell28@gmail.com', 450, 'DE02120300000000202051', 'BYLADEM1001', 'B072RRE2I55', 86309472539),
-       (32141675193, 'Ute', 'Fuerst', 'Rosenstrasse', 87, 74235, 'Erlenbach', 'UteFuerst@einrot.com', 2300, 'DE02500105170137075030', 'INGDDEFF', 'B3KX7HE7908', 96310507402),
-       (43051895764, 'Marcel', 'Friedman', 'Lerchenstraße', 42, 74189, 'Weinsberg', 'marcfried_77@hotmail.com', 1200, 'DE02100500000054540402', 'BELADEBE', 'S3Z3I1W7406', 32141675193),
-       (78409681858, 'Lisa', 'Drechsler', 'Boxhagenerstraße', 44, 74223, 'Flein', 'LisaDrechsler@cuvox.de', 450, 'DE02300209000106531065', 'CMCIDEDD', 'P5383237889', 43051895764),
-       (45963187729, 'Barbara', 'Frey', 'Alter Wall', 14, 74226, 'Nordheim', 'BarbaraFrey@cuvox.de', 450, 'DE02200505501015871393', 'HASPDEHH', 'Y2R191S8425', 78409681858),
-       (40087531266, 'Lisa', 'Goldschmidt', 'Grolmanstraße', 11, 74081, 'Heilbronn', 'Lisa.G@einrot.com', 2300, 'DE02100100100006820101', 'PBNKDEFF', 'H52P483DB47', 45963187729),
-       (96215843551, 'Kristin', 'Nacht', 'Landsberger Allee', 94, 74211, 'Leingarten', 'Kristin.Nacht@web.de', 1200, 'DE02300606010002474689', 'DAAEDEDD', 'G84D8025V15', 40087531266),
-       (16540669728, 'Erik', 'Beike', 'Bleibtreustrasse', 56, 74074, 'Heilbronn', 'Expromen92@gmail.com', 450, 'DE02600501010002034304', 'SOLADEST600', 'X7V3239S540', 96215843551),
-       (40857352952, 'Thorsten', 'Müller', 'Langenhorner Chaussee', 47, 74189, 'Weinsberg', 'ThorstenHoffmail@gmx.com', 2300, 'DE02700202700010108669', 'HYVEDEMM', 'D891906H612', 16540669728),
-       (86309472539, 'Tim', 'Glockner', 'Kurfürstenstraße', 27, 74235, 'Erlenbach', 'TimGlockner@einrot.com', 1200, 'DE02700100800030876808', 'PBNKDEFF', 'C5025OP7095', 40857352952)
+VALUES (96310507402, 'B072RRE2I55', 86309472539),
+       (32141675193, 'B3KX7HE7908', 96310507402),
+       (43051895764, 'S3Z3I1W7406', 32141675193),
+       (78409681858, 'P5383237889', 43051895764),
+       (45963187729, 'Y2R191S8425', 78409681858),
+       (40087531266, 'H52P483DB47', 45963187729),
+       (96215843551, 'G84D8025V15', 40087531266),
+       (16540669728, 'X7V3239S540', 96215843551),
+       (40857352952, 'D891906H612', 16540669728),
+       (86309472539, 'C5025OP7095', 40857352952)
 ;
 
 INSERT INTO koch
-VALUES (80363942737, 'Marcel', 'Baecker', 'Paderborner Strasse', 119, 74078, 'Heilbronn', 'Marcel.Baecker@web.de', 2400, 'DE02370502990000684712', 'COKSDE33', 'PZA', 37121904867),
-       (73169652609, 'Artemia', 'Trevisano', 'Burgstraße', 2, 74172, 'Neckarsulm', 'Artemia79@gmail.com', 1300, 'DE88100900001234567892', 'BEVODEBB', 'PZA', 80363942737),
-       (42859220670, 'Lisandro', 'Calabresi', 'Mozartstraße', 15, 74078, 'Heilbronn', 'Calabresi_Lisandro@hotmail.com', 1900, 'DE02701500000000594937', 'SSKMDEMM', 'VIN', 37709628516),
-       (69930147859, 'Prisca', 'Marcelo', 'Hans-Grade-Allee', 33, 74235, 'Erlenbach', 'Marcelo_P@gmail.com', 2400, 'DE43500105175367834115', 'HASPDEHH', 'PZA', 73169652609),
-       (37121904867, 'Virgilia', 'Gallo', 'Scharnweberstrasse', 97, 74223, 'Flein', 'Shomblue@gallo.it', 1300, 'DE77500105175183492181', 'PBNKDEFF', 'PZA', 69930147859),
-       (38260927129, 'Patrick', 'Konig', 'Marseiller Strasse', 72, 74074, 'Heilbronn', 'P.Konig@gmx.de', 850, 'DE38500105177284374464', 'HEISDE66XXX', 'AZU', NULL),
-       (37709628516, 'Luca', 'Stark', 'Hedemannstasse', 23, 74226, 'Nordheim', 'Luca.Stark@protonmail.ch', 1900, 'DE35500105175458146691', 'SOLADEST600', 'VIN', 42859220670)
+VALUES (80363942737, 'PZA', 37121904867),
+       (73169652609, 'PZA', 80363942737),
+       (42859220670, 'VIN', 37709628516),
+       (69930147859, 'PZA', 73169652609),
+       (37121904867, 'PZA', 69930147859),
+       (38260927129, 'AZU', NULL),
+       (37709628516, 'VIN', 42859220670)
 ;
 
 INSERT INTO lieferzone
@@ -350,39 +349,71 @@ VALUES (79274, '2022-04-08 17:24:39', 2, 0, 14.10, 69930147859, 32141675193, 2),
        (73397, '2022-04-08 19:19:57', 4, 2, 47.88, 80363942737, 40087531266, 4)
 ;
 
+INSERT INTO artikel
+VALUES (3967, 'Getraenke', 7.39),
+       (3598, 'Getraenke', 21.90),
+       (1634, 'Getraenke', 8.59),
+       (5592, 'Getraenke', 6.99),
+       (7091, 'Getraenke', 19.95),
+       (1431, 'Getraenke', 7.40),
+       (3826, 'Getraenke', 8.80),
+       (6684, 'Getraenke', 9.99),
+       (7859, 'Getraenke', 14.25),
+       (8489, 'Getraenke', 18.80),
+       (372, 'Speisen', 6.80),
+       (192, 'Speisen', 7.50),
+       (272, 'Speisen', 7.50),
+       (252, 'Speisen', 8.60),
+       (812, 'Speisen', 7.80),
+       (202, 'Speisen', 7.90),
+       (442, 'Speisen', 8.10),
+       (432, 'Speisen', 9.20),
+       (312, 'Speisen', 10.00),
+       (562, 'Speisen', 8.10),
+       (371, 'Speisen', 5.30),
+       (191, 'Speisen', 6.00),
+       (271, 'Speisen', 6.00),
+       (373, 'Speisen', 15.50),
+       (193, 'Speisen', 16.50),
+       (273, 'Speisen', 16.50),
+       (374, 'Speisen', 19.00),
+       (194, 'Speisen', 20.50),
+       (274, 'Speisen', 20.50)
+;
+
 INSERT INTO wein
-VALUES (3967, 'Getraenke', 7.39, 2019, 'Chardonnay', 42),
-       (3598, 'Getraenke', 21.90, 2017, 'Corvina', 82),
-       (1634, 'Getraenke', 8.59, 2019, 'Nerello Mascalese', 77),
-       (5592, 'Getraenke', 6.99, 2021, 'Fiano', 124),
-       (7091, 'Getraenke', 19.95, 2020, 'Montepulciano', 92),
-       (1431, 'Getraenke', 7.40, 2021, 'Sangiovese', 63),
-       (3826, 'Getraenke', 8.80, 2015, 'Nerello Mascalese', 24),
-       (6684, 'Getraenke', 9.99, 2013, 'Gaglioppo', 12),
-       (7859, 'Getraenke', 14.25, 2017, 'Canaiolo', 40),
-       (8489, 'Getraenke', 18.80, 2012, 'Sauvignon Blanc', 8)
+VALUES (3967, 2019, 'Chardonnay', 42),
+       (3598, 2017, 'Corvina', 82),
+       (1634, 2019, 'Nerello Mascalese', 77),
+       (5592, 2021, 'Fiano', 124),
+       (7091, 2020, 'Montepulciano', 92),
+       (1431, 2021, 'Sangiovese', 63),
+       (3826, 2015, 'Nerello Mascalese', 24),
+       (6684, 2013, 'Gaglioppo', 12),
+       (7859, 2017, 'Canaiolo', 40),
+       (8489, 2012, 'Sauvignon Blanc', 8)
 ;
 
 INSERT INTO pizza
-VALUES (372, 'Speisen', 'Margherita', 2, 6.80, 'large'),
-       (192, 'Speisen', 'Salami', 3, 7.50, 'large'),
-       (272, 'Speisen', 'Schinken', 3, 7.50, 'large'),
-       (252, 'Speisen', 'Marche', 4, 8.60, 'large'),
-       (812, 'Speisen', 'Fantasia', 4, 7.80, 'large'),
-       (202, 'Speisen', 'Hawaii', 4, 7.90, 'large'),
-       (442, 'Speisen', 'Capricciosa', 5, 8.10, 'large'),
-       (432, 'Speisen', 'Quattro Stagioni', 7, 9.20, 'large'),
-       (312, 'Speisen', 'Bella Capri', 7, 10.00, 'large'),
-       (562, 'Speisen', 'Greca', 5, 8.10, 'large'),
-       (371, 'Speisen', 'Margherita', 2, 5.30, 'small'),
-       (191, 'Speisen', 'Salami', 3, 6.00, 'small'),
-       (271, 'Speisen', 'Schinken', 3, 6.00, 'small'),
-       (373, 'Speisen', 'Margherita', 2, 15.50, 'family'),
-       (193, 'Speisen', 'Salami', 3, 16.50, 'family'),
-       (273, 'Speisen', 'Schinken', 3, 16.50, 'family'),
-       (374, 'Speisen', 'Margherita', 2, 19.00, 'party'),
-       (194, 'Speisen', 'Salami', 3, 20.50, 'party'),
-       (274, 'Speisen', 'Schinken', 3, 20.50, 'party')
+VALUES (372, 'Margherita', 2, 'large'),
+       (192, 'Salami', 3, 'large'),
+       (272, 'Schinken', 3, 'large'),
+       (252, 'Marche', 4, 'large'),
+       (812, 'Fantasia', 4, 'large'),
+       (202, 'Hawaii', 4, 'large'),
+       (442, 'Capricciosa', 5, 'large'),
+       (432, 'Quattro Stagioni', 7, 'large'),
+       (312, 'Bella Capri', 7, 'large'),
+       (562, 'Greca', 5, 'large'),
+       (371, 'Margherita', 2, 'small'),
+       (191, 'Salami', 3, 'small'),
+       (271, 'Schinken', 3, 'small'),
+       (373, 'Margherita', 2, 'family'),
+       (193, 'Salami', 3, 'family'),
+       (273, 'Schinken', 3, 'family'),
+       (374, 'Margherita', 2, 'party'),
+       (194, 'Salami', 3, 'party'),
+       (274, 'Schinken', 3, 'party')
 ;
 
 INSERT INTO zutat
@@ -405,40 +436,36 @@ VALUES (1, 'Salami', 'Wiltmann', false, 38),
        (17, 'Geriebener Käse', 'Finello', true, 51)
 ;
 
-INSERT INTO besteht_aus --Schlüssel (artikelnummer)=(442) ist nicht in Tabelle »artikel« vorhanden.
-VALUES (79274, 442),
-       (79274, 191),
-       (45156, 202), --FEHLER:  doppelter Schlüsselwert verletzt Unique-Constraint »besteht_aus_pkey«
-       (45156, 432), --FEHLER:  doppelter Schlüsselwert verletzt Unique-Constraint »besteht_aus_pkey«
-       (45156, 442),
-       (45156, 371),
-       (45156, 252),
-       (45156, 312),
-       (45156, 191),
-       --(45156, 202), --Schlüssel »(bestellnummer, artikelnummer)=(45156, 202)« existiert bereits.
-       --(45156, 432), --Schlüssel »(bestellnummer, artikelnummer)=(45156, 432)« existiert bereits.
-       (45156, 562),
-       (45156, 1634),
-       (45156, 3826),
-       (45156, 7859),
-       (85383, 194),
-       (85383, 5592),
-       (85383, 1431),
-       (48852, 812),
-       (48852, 373),
-       (48852, 202),
-       (48852, 8489),
-       (90749, 3598),
-       (90749, 5592), --FEHLER:  doppelter Schlüsselwert verletzt Unique-Constraint »besteht_aus_pkey«
-       --(90749, 5592), --Schlüssel »(bestellnummer, artikelnummer)=(90749, 5592)« existiert bereits.
-       (90749, 3826),
-       (90749, 1431),
-       (73397, 812), --FEHLER:  doppelter Schlüsselwert verletzt Unique-Constraint »besteht_aus_pkey«
-       --(73397, 812), --Schlüssel »(bestellnummer, artikelnummer)=(73397, 812)« existiert bereits.
-       (73397, 442),
-       (73397, 372),
-       (73397, 6684),
-       (73397, 3967)    
+INSERT INTO besteht_aus
+VALUES (79274, 442, 1),
+       (79274, 191, 1),
+       (45156, 202, 2),
+       (45156, 432, 2),
+       (45156, 442, 1),
+       (45156, 371, 1),
+       (45156, 252, 1),
+       (45156, 312, 1),
+       (45156, 191, 1),
+       (45156, 562, 1),
+       (45156, 1634, 1),
+       (45156, 3826, 1),
+       (45156, 7859, 1),
+       (85383, 194, 1),
+       (85383, 5592, 1),
+       (85383, 1431, 1),
+       (48852, 812, 1),
+       (48852, 373, 1),
+       (48852, 202, 1),
+       (48852, 8489, 1),
+       (90749, 3598, 1),
+       (90749, 5592, 2),
+       (90749, 3826, 1),
+       (90749, 1431, 1),
+       (73397, 812, 2),
+       (73397, 442, 1),
+       (73397, 372, 1),
+       (73397, 6684, 1),
+       (73397, 3967, 1)    
 ;
 
 INSERT INTO ist_belegt_mit
@@ -512,7 +539,7 @@ VALUES (372, 16),
        (274, 3)
 ;
 
-INSERT INTO telefonnummern_mitarbeiter --Schlüssel (besitzer_m)=(96310507402) ist nicht in Tabelle »mitarbeiter« vorhanden.
+INSERT INTO telefonnummern_mitarbeiter
 VALUES ('+49 176 123456', 'mobil', 96310507402),
        ('+49 152 28817386', 'mobil', 42859220670),
        ('+49 152 54599371', 'mobil', 80363942737),
