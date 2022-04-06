@@ -210,14 +210,14 @@ CREATE TABLE IF NOT EXISTS telefonnummern_kunden
  -- Lieferant
 ALTER TABLE lieferant
 ADD Vertretung_fuer bigint,
-ADD FOREIGN KEY(Vertretung_fuer) REFERENCES lieferant
+ADD FOREIGN KEY(Vertretung_fuer) REFERENCES lieferant,
 ADD FOREIGN KEY(SteuerID) REFERENCES mitarbeiter
 ;
 
  -- Koch
 ALTER TABLE koch
 ADD Vertretung_fuer bigint,
-ADD FOREIGN KEY(Vertretung_fuer) REFERENCES koch
+ADD FOREIGN KEY(Vertretung_fuer) REFERENCES koch,
 ADD FOREIGN KEY(SteuerID) REFERENCES mitarbeiter
 ;
 
