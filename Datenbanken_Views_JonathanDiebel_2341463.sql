@@ -105,7 +105,7 @@ Order BY zeitstempel
 
 ----------------------------------------------------------------------------------
 
-/*
+/*BUG
  * View 7: Kunden
  * Menu with all pizzas and info on item numbers, sizes, prices and toppings.
  */
@@ -121,7 +121,7 @@ Order BY artikel.artikelnummer, zutat.bezeichnung
 
 ----------------------------------------------------------------------------------
 
-/*
+/*BUG
  * View 8: Kunden
  * Menu with all vegetarian pizzas and info on item numbers, sizes, prices and toppings.
  */
@@ -139,6 +139,20 @@ WHERE pizza.artikelnummer NOT IN (
     WHERE vegetarisch = false
 )
 Order BY artikel.artikelnummer, zutat.bezeichnung
+;
+
+----------------------------------------------------------------------------------
+
+/*
+ * View 9: Kunden
+ * Beverage list with all wines and info on item numbers, grape varieties, years and prices.
+ */
+
+CREATE View View9_Getraenkekarte AS
+SELECT artikel.artikelnummer, rebsorte, jahrgang, stueckpreis
+from artikel 
+Join wein ON artikel.ArtikelNummer = wein.ArtikelNummer
+Order BY rebsorte, jahrgang
 ;
 
 ----------------------------------------------------------------------------------
