@@ -4,7 +4,7 @@
  * Autor:            Jonathan Diebel
  * Matrikelnummer:   2341463
  * Erstelldatum:     03.05.2022
- * Letzte Änderung:  04.05.2022
+ * Letzte Änderung:  05.05.2022
  */
 
 ----------------------------------------------------------------------------------
@@ -91,10 +91,17 @@ Order BY vorrat
 
 /*
  * View 6: Lieferanten
- * 
+ * Overview of all currently open orders with customer address, responsible delivery person and sorted by order date.
  */
 
-CREATE View View6_ AS
+CREATE View View6_AuftraegeFuerLieferanten AS
+SELECT DISTINCT zeitstempel, bestellnummer, anzahlspeisen, anzahlgetraenke, preis, ausgeliefert_von, kundennummer, vorname, nachname, strasse, hausnummer, postleitzahl, ort, stadtteil, zonennummer, lieferzone.bezeichnung
+from lieferant 
+Join bestellung ON lieferant.SteuerID = bestellung.ausgeliefert_von
+Join kunde ON bestellung.erteilt_von = kunde.KundenNummer
+Join lieferzone ON lieferant.SteuerID = lieferzone.Zustaendiger_Fahrer
+Order BY zeitstempel
+;
 
 ----------------------------------------------------------------------------------
 
@@ -119,7 +126,7 @@ Order BY artikel.artikelnummer, zutat.bezeichnung
  * Menu with all vegetarian pizzas and info on item numbers, sizes, prices and toppings.
  */
 
-CREATE View View8_SpeisekarteVegetarisch AS
+CREATE View View8_Speisekarte_Vegetarisch AS
 SELECT artikel.artikelnummer, pizza.bezeichnung, groesse, stueckpreis, zutat.bezeichnung
 from artikel 
 Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
