@@ -11,14 +11,15 @@
 
 /*
  * View 1: Personalabteilung
- * The data of the cooks and deliverers should be displayed completely in an employee table.
+ * The data of the cooks and deliverers including phone numbers should be displayed completely in an employee table.
  */
 
 CREATE View View1_Mitarbeiter AS
-SELECT mitarbeiter.*, koch.Kuechenposten, lieferant.FuehrerscheinID
+SELECT mitarbeiter.*, koch.Kuechenposten, lieferant.FuehrerscheinID, telefonnummern_mitarbeiter.telefonnummer, telefonnummern_mitarbeiter.art
 from mitarbeiter 
 left join koch ON mitarbeiter.SteuerID = koch.SteuerID 
 left join lieferant ON mitarbeiter.SteuerID = lieferant.SteuerID
+left join telefonnummern_mitarbeiter ON telefonnummern_mitarbeiter.Besitzer_M = mitarbeiter.SteuerID
 ;
 
 ----------------------------------------------------------------------------------
