@@ -41,7 +41,7 @@ Order BY Gehalt DESC
 
 /*
  * View 3: Köche
- * 
+ * Overview of all currently open pizza orders with items, responsible cooks and sorted by order date.
  */
 
 CREATE View View3_AuftraegeFuerKoeche_Speisen AS
@@ -50,7 +50,7 @@ from mitarbeiter
 Join bestellung ON mitarbeiter.SteuerID = bestellung.zubereitet_von
 Join besteht_aus ON bestellung.BestellNummer = besteht_aus.BestellNummer
 Join artikel ON besteht_aus.ArtikelNummer = artikel.ArtikelNummer
-left Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
+Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
 WHERE artikel.kategorie = 'Speisen'
 Order BY zeitstempel
 ;
@@ -59,17 +59,17 @@ Order BY zeitstempel
 
 /*
  * View 4: Köche
- * 
+ * Overview of all currently open wine orders with articles, responsible chefs and sorted by order date.
  */
 
-CREATE View View3_AuftraegeFuerKoeche_Getraenke AS
-SELECT DISTINCT *
+CREATE View View4_AuftraegeFuerKoeche_Getraenke AS
+SELECT DISTINCT zeitstempel, bestellung.bestellnummer, anzahlgetraenke, artikel.artikelnummer, menge, rebsorte, jahrgang, zubereitet_von, vorname, nachname
 from mitarbeiter 
 Join bestellung ON mitarbeiter.SteuerID = bestellung.zubereitet_von
 Join besteht_aus ON bestellung.BestellNummer = besteht_aus.BestellNummer
 Join artikel ON besteht_aus.ArtikelNummer = artikel.ArtikelNummer
-left Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
-WHERE artikel.kategorie = 'Speisen'
+Join wein ON artikel.ArtikelNummer = wein.ArtikelNummer
+WHERE artikel.kategorie = 'Getraenke'
 Order BY zeitstempel
 ;
 
