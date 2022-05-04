@@ -74,4 +74,65 @@ Order BY zeitstempel
 ;
 
 ----------------------------------------------------------------------------------
+
+/*
+ * View 5: Köche
+ * Output an overview of the ingredients, sorted by quantity, with no more than 20 pieces left in stock.
+ */
+
+CREATE View View5_ZutatenMitGeringemLagerbestand AS
+SELECT ZutatenNummer, Bezeichnung, Hersteller, Vorrat
+from zutat
+WHERE vorrat <= 20
+Order BY vorrat
+;
+
+----------------------------------------------------------------------------------
+
+/*
+ * View 6: Lieferanten
+ * 
+ */
+
+CREATE View View6_ AS
+
+----------------------------------------------------------------------------------
+
+/*
+ * View 7: Kunden
+ * Menu with all pizzas and info on item numbers, sizes, prices and toppings.
+ */
+
+CREATE View View7_Speisekarte AS
+SELECT artikel.artikelnummer, pizza.bezeichnung, groesse, stueckpreis, zutat.bezeichnung
+from artikel 
+Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
+Join ist_belegt_mit ON pizza.ArtikelNummer = ist_belegt_mit.ArtikelNummer
+Join zutat ON ist_belegt_mit.ZutatenNummer = zutat.ZutatenNummer
+Order BY artikel.artikelnummer, zutat.bezeichnung
+;
+
+----------------------------------------------------------------------------------
+
+/*
+ * View 8: Kunden
+ * Menu with all vegetarian pizzas and info on item numbers, sizes, prices and toppings.
+ */
+
+CREATE View View8_SpeisekarteVegetarisch AS
+SELECT artikel.artikelnummer, pizza.bezeichnung, groesse, stueckpreis, zutat.bezeichnung
+from artikel 
+Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
+Join ist_belegt_mit ON pizza.ArtikelNummer = ist_belegt_mit.ArtikelNummer
+Join zutat ON ist_belegt_mit.ZutatenNummer = zutat.ZutatenNummer
+WHERE pizza.artikelnummer NOT IN (
+    SELECT pizza.artikelnummer from pizza
+    Join ist_belegt_mit ON pizza.ArtikelNummer = ist_belegt_mit.ArtikelNummer
+    Join zutat ON ist_belegt_mit.ZutatenNummer = zutat.ZutatenNummer
+    WHERE vegetarisch = false
+)
+Order BY artikel.artikelnummer, zutat.bezeichnung
+;
+
+----------------------------------------------------------------------------------
 -- END OF FILE
