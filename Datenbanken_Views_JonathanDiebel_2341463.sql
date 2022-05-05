@@ -112,12 +112,14 @@ Order BY zeitstempel
  */
 
 CREATE View View7_Speisekarte AS
-SELECT artikel.artikelnummer, pizza.bezeichnung as pizzasorte, groesse, stueckpreis, zutat.bezeichnung as belag
+SELECT artikel.artikelnummer, pizza.bezeichnung as pizzasorte, groesse, stueckpreis, 
+string_agg(zutat.bezeichnung, ', ') as belag
 from artikel 
 Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
 Join ist_belegt_mit ON pizza.ArtikelNummer = ist_belegt_mit.ArtikelNummer
 Join zutat ON ist_belegt_mit.ZutatenNummer = zutat.ZutatenNummer
-Order BY artikel.artikelnummer, zutat.bezeichnung
+GROUP BY artikel.artikelnummer, pizza.bezeichnung, groesse
+Order BY artikel.artikelnummer
 ;
 
 ----------------------------------------------------------------------------------
@@ -128,7 +130,8 @@ Order BY artikel.artikelnummer, zutat.bezeichnung
  */
 
 CREATE View View8_Speisekarte_Vegetarisch AS
-SELECT artikel.artikelnummer, pizza.bezeichnung as pizzasorte, groesse, stueckpreis, zutat.bezeichnung as belag
+SELECT artikel.artikelnummer, pizza.bezeichnung as pizzasorte, groesse, stueckpreis,
+string_agg(zutat.bezeichnung, ', ') as belag
 from artikel 
 Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
 Join ist_belegt_mit ON pizza.ArtikelNummer = ist_belegt_mit.ArtikelNummer
@@ -139,7 +142,8 @@ WHERE pizza.artikelnummer NOT IN (
     Join zutat ON ist_belegt_mit.ZutatenNummer = zutat.ZutatenNummer
     WHERE vegetarisch = false
 )
-Order BY artikel.artikelnummer, zutat.bezeichnung
+GROUP BY artikel.artikelnummer, pizza.bezeichnung, groesse
+Order BY artikel.artikelnummer
 ;
 
 ----------------------------------------------------------------------------------
@@ -181,7 +185,8 @@ ORDER BY kunde.kundennummer
 
 /*
  * View 11: Chef
- * The total financial turnover from all orders of the current day should be calculated.
+ * From all orders of the current day the number of orders, the sold food & beverages 
+ * as well as the total turnover should be calculated.
  */
 
 CREATE View View11_GesamtumsatzDesTages AS
