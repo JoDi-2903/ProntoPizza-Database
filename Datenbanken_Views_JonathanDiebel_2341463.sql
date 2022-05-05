@@ -160,14 +160,21 @@ Order BY rebsorte, jahrgang
 
 /*
  * View 10: Chef
- * The customer data including phone numbers should be displayed in a table.
+ * The customer data including phone numbers, total number of orders, number of ordered food & beverages 
+ * and the generated revenue through the customer should be displayed in a table.
  */
 
 CREATE View View10_Kunden AS
-SELECT kunde.*, telefonnummern_kunden.telefonnummer, telefonnummern_kunden.art
+SELECT kunde.*, telefonnummern_kunden.telefonnummer, telefonnummern_kunden.art,
+COUNT (bestellung.erteilt_von) Anzahl_Bestellungen,
+SUM (bestellung.AnzahlSpeisen) Anzahl_Bestellte_Speisen,
+SUM (bestellung.AnzahlGetraenke) Anzahl_Bestellte_Getraenke,
+SUM (bestellung.preis) Umsatz_Kunde
 from kunde
 left join telefonnummern_kunden ON telefonnummern_kunden.Besitzer_K = kunde.KundenNummer 
-Order BY KundenNummer
+left join bestellung ON bestellung.erteilt_von = kunde.KundenNummer
+GROUP BY kunde.kundennummer, telefonnummern_kunden.telefonnummer, telefonnummern_kunden.art
+ORDER BY kunde.kundennummer
 ;
 
 ----------------------------------------------------------------------------------
