@@ -172,6 +172,21 @@ Order BY KundenNummer
 
 ----------------------------------------------------------------------------------
 
+/*
+ * View 11: Chef
+ * Gesamtumsatz des Tages
+ */
+
+CREATE View View11_GesamtumsatzDesTages AS
+SELECT SUM(bestellung.Preis)
+from bestellung
+WHERE DATE(Zeitstempel) = CURRENT_DATE 	--use '2022-04-08' in this example to get some output
+;
+
+----------------------------------------------------------------------------------
+-- END OF FILE
+
+
 /* TEMP
  * View 11: Chef
  * Anzahl der Kunden pro Lieferzone ausgeben
@@ -182,19 +197,3 @@ SELECT count(stadtteil)
 from kunde
 WHERE stadtteil IN ('Boeckingen', 'Heilbronn', 'Neckargartach')
 ;
-
-----------------------------------------------------------------------------------
-
-/*
- * View 12: Chef
- * Gesamtumsatz des Tages
- */
-
-CREATE View View12_GesamtumsatzDesTages AS
-SELECT SUM(bestellung.Preis)
-from bestellung
-WHERE DATE(Zeitstempel) = CURRENT_DATE 	--use '2022-04-08' in this example to get some output
-;
-
-----------------------------------------------------------------------------------
--- END OF FILE
