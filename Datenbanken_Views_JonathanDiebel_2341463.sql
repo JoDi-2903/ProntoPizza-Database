@@ -106,13 +106,13 @@ Order BY zeitstempel
 
 ----------------------------------------------------------------------------------
 
-/*BUG
+/*
  * View 7: Kunden
  * Menu with all pizzas and info on item numbers, sizes, prices and toppings.
  */
 
 CREATE View View7_Speisekarte AS
-SELECT artikel.artikelnummer, pizza.bezeichnung, groesse, stueckpreis, zutat.bezeichnung
+SELECT artikel.artikelnummer, pizza.bezeichnung, groesse, stueckpreis, zutat.bezeichnung as belag
 from artikel 
 Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
 Join ist_belegt_mit ON pizza.ArtikelNummer = ist_belegt_mit.ArtikelNummer
@@ -122,13 +122,13 @@ Order BY artikel.artikelnummer, zutat.bezeichnung
 
 ----------------------------------------------------------------------------------
 
-/*BUG
+/*
  * View 8: Kunden
  * Menu with all vegetarian pizzas and info on item numbers, sizes, prices and toppings.
  */
 
 CREATE View View8_Speisekarte_Vegetarisch AS
-SELECT artikel.artikelnummer, pizza.bezeichnung, groesse, stueckpreis, zutat.bezeichnung
+SELECT artikel.artikelnummer, pizza.bezeichnung, groesse, stueckpreis, zutat.bezeichnung as belag
 from artikel 
 Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
 Join ist_belegt_mit ON pizza.ArtikelNummer = ist_belegt_mit.ArtikelNummer
@@ -160,7 +160,7 @@ Order BY rebsorte, jahrgang
 
 /*
  * View 10: Chef
- * 
+ * The customer data including phone numbers should be displayed in a table.
  */
 
 CREATE View View10_Kunden AS
@@ -174,7 +174,7 @@ Order BY KundenNummer
 
 /*
  * View 11: Chef
- * Gesamtumsatz des Tages
+ * The total financial turnover from all orders of the current day should be calculated.
  */
 
 CREATE View View11_GesamtumsatzDesTages AS
@@ -185,15 +185,3 @@ WHERE DATE(Zeitstempel) = CURRENT_DATE 	--use '2022-04-08' in this example to ge
 
 ----------------------------------------------------------------------------------
 -- END OF FILE
-
-
-/* TEMP
- * View 11: Chef
- * Anzahl der Kunden pro Lieferzone ausgeben
- */
-
-CREATE View View10_AnzahlKundenProLieferzone AS
-SELECT count(stadtteil)
-from kunde
-WHERE stadtteil IN ('Boeckingen', 'Heilbronn', 'Neckargartach')
-;
