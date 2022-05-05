@@ -46,7 +46,7 @@ Order BY Gehalt DESC
  */
 
 CREATE View View3_AuftraegeFuerKoeche_Speisen AS
-SELECT DISTINCT zeitstempel, bestellung.bestellnummer, anzahlspeisen, artikel.artikelnummer, menge, bezeichnung, zutatenanzahl, groesse, zubereitet_von, vorname, nachname
+SELECT DISTINCT zeitstempel, bestellung.bestellnummer, anzahlspeisen, artikel.artikelnummer, menge, bezeichnung as pizzasorte, zutatenanzahl, groesse, zubereitet_von, vorname, nachname
 from mitarbeiter 
 Join bestellung ON mitarbeiter.SteuerID = bestellung.zubereitet_von
 Join besteht_aus ON bestellung.BestellNummer = besteht_aus.BestellNummer
@@ -96,11 +96,11 @@ Order BY vorrat
  */
 
 CREATE View View6_AuftraegeFuerLieferanten AS
-SELECT DISTINCT zeitstempel, bestellnummer, anzahlspeisen, anzahlgetraenke, preis, ausgeliefert_von, kundennummer, vorname, nachname, strasse, hausnummer, postleitzahl, ort, stadtteil, zonennummer, lieferzone.bezeichnung
-from lieferant 
-Join bestellung ON lieferant.SteuerID = bestellung.ausgeliefert_von
+SELECT DISTINCT zeitstempel, bestellnummer, anzahlspeisen, anzahlgetraenke, preis, ausgeliefert_von, mitarbeiter.vorname as Lieferant_Vorname, mitarbeiter.nachname as Lieferant_Nachname, kundennummer, kunde.vorname as Kunde_Vorname, kunde.nachname as Kunde_Nachname, kunde.strasse, kunde.hausnummer, kunde.postleitzahl, kunde.ort, kunde.stadtteil, zonennummer, lieferzone.bezeichnung as lieferzone
+from mitarbeiter 
+Join bestellung ON mitarbeiter.SteuerID = bestellung.ausgeliefert_von
 Join kunde ON bestellung.erteilt_von = kunde.KundenNummer
-Join lieferzone ON lieferant.SteuerID = lieferzone.Zustaendiger_Fahrer
+Join lieferzone ON mitarbeiter.SteuerID = lieferzone.Zustaendiger_Fahrer
 Order BY zeitstempel
 ;
 
@@ -112,7 +112,7 @@ Order BY zeitstempel
  */
 
 CREATE View View7_Speisekarte AS
-SELECT artikel.artikelnummer, pizza.bezeichnung, groesse, stueckpreis, zutat.bezeichnung as belag
+SELECT artikel.artikelnummer, pizza.bezeichnung as pizzasorte, groesse, stueckpreis, zutat.bezeichnung as belag
 from artikel 
 Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
 Join ist_belegt_mit ON pizza.ArtikelNummer = ist_belegt_mit.ArtikelNummer
@@ -128,7 +128,7 @@ Order BY artikel.artikelnummer, zutat.bezeichnung
  */
 
 CREATE View View8_Speisekarte_Vegetarisch AS
-SELECT artikel.artikelnummer, pizza.bezeichnung, groesse, stueckpreis, zutat.bezeichnung as belag
+SELECT artikel.artikelnummer, pizza.bezeichnung as pizzasorte, groesse, stueckpreis, zutat.bezeichnung as belag
 from artikel 
 Join pizza ON artikel.ArtikelNummer = pizza.ArtikelNummer
 Join ist_belegt_mit ON pizza.ArtikelNummer = ist_belegt_mit.ArtikelNummer
