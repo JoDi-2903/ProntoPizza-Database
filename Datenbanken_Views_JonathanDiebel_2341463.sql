@@ -159,7 +159,7 @@ Order BY rebsorte, jahrgang
 ----------------------------------------------------------------------------------
 
 /*
- * View 10: Kundenbetreuung
+ * View 10: Chef
  * 
  */
 
@@ -168,6 +168,32 @@ SELECT kunde.*, telefonnummern_kunden.telefonnummer, telefonnummern_kunden.art
 from kunde
 left join telefonnummern_kunden ON telefonnummern_kunden.Besitzer_K = kunde.KundenNummer 
 Order BY KundenNummer
+;
+
+----------------------------------------------------------------------------------
+
+/* TEMP
+ * View 11: Chef
+ * Anzahl der Kunden pro Lieferzone ausgeben
+ */
+
+CREATE View View10_AnzahlKundenProLieferzone AS
+SELECT count(stadtteil)
+from kunde
+WHERE stadtteil IN ('Boeckingen', 'Heilbronn', 'Neckargartach')
+;
+
+----------------------------------------------------------------------------------
+
+/*
+ * View 12: Chef
+ * Gesamtumsatz des Tages
+ */
+
+CREATE View View12_GesamtumsatzDesTages AS
+SELECT SUM(bestellung.Preis)
+from bestellung
+WHERE DATE(Zeitstempel) = CURRENT_DATE 	--use '2022-04-08' in this example to get some output
 ;
 
 ----------------------------------------------------------------------------------
