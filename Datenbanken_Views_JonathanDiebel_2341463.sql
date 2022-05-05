@@ -4,8 +4,26 @@
  * Autor:            Jonathan Diebel
  * Matrikelnummer:   2341463
  * Erstelldatum:     03.05.2022
- * Letzte Änderung:  05.05.2022
+ * Letzte Änderung:  06.05.2022
  */
+
+----------------------------------------------------------------------------------
+
+/*
+ * Delete Views if they already exist
+ */
+ 
+ DROP View if EXISTS View1_Mitarbeiter;
+ DROP View if EXISTS View2_UeberDurchschnittsgehalt;
+ DROP View if EXISTS View3_AuftraegeFuerKoeche_Speisen;
+ DROP View if EXISTS View4_AuftraegeFuerKoeche_Getraenke;
+ DROP View if EXISTS View5_ZutatenMitGeringemLagerbestand;
+ DROP View if EXISTS View6_AuftraegeFuerLieferanten;
+ DROP View if EXISTS View7_Speisekarte;
+ DROP View if EXISTS View8_Speisekarte_Vegetarisch;
+ DROP View if EXISTS View9_Getraenkekarte;
+ DROP View if EXISTS View10_Kundenauswertung;
+ DROP View if EXISTS View11_Tagesstatistik_Bestellungen;
 
 ----------------------------------------------------------------------------------
 
@@ -165,11 +183,13 @@ Order BY rebsorte, jahrgang
 /*
  * View 10: Chef
  * The customer data including phone numbers, total number of orders, number of ordered food & beverages 
- * and the generated revenue through the customer should be displayed in a table.
+ * and the generated financial revenue through the customer should be displayed in a table.
  */
 
 CREATE View View10_Kundenauswertung AS
-SELECT kunde.*, telefonnummern_kunden.telefonnummer, telefonnummern_kunden.art,
+SELECT kunde.*,
+string_agg(telefonnummern_kunden.telefonnummer, ',  ') as Telefonnummer,
+string_agg(telefonnummern_kunden.art, ', ') as Art,
 COUNT (bestellung.erteilt_von) Anzahl_Bestellungen,
 SUM (bestellung.AnzahlSpeisen) Anzahl_Bestellte_Speisen,
 SUM (bestellung.AnzahlGetraenke) Anzahl_Bestellte_Getraenke,
@@ -177,7 +197,7 @@ SUM (bestellung.preis) Umsatz_Kunde
 from kunde
 left join telefonnummern_kunden ON telefonnummern_kunden.Besitzer_K = kunde.KundenNummer 
 left join bestellung ON bestellung.erteilt_von = kunde.KundenNummer
-GROUP BY kunde.kundennummer, telefonnummern_kunden.telefonnummer, telefonnummern_kunden.art
+GROUP BY kunde.kundennummer
 ORDER BY kunde.kundennummer
 ;
 
@@ -189,7 +209,7 @@ ORDER BY kunde.kundennummer
  * as well as the total turnover should be calculated.
  */
 
-CREATE View View11_GesamtumsatzDesTages AS
+CREATE View View11_Tagesstatistik_Bestellungen AS
 SELECT 
 COUNT (*) Anzahl_Bestellungen,
 SUM (bestellung.AnzahlSpeisen) verkaufte_Speisen,
