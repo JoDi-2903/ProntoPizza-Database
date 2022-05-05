@@ -157,4 +157,18 @@ Order BY rebsorte, jahrgang
 ;
 
 ----------------------------------------------------------------------------------
+
+/*
+ * View 10: Kundenbetreuung
+ * 
+ */
+
+CREATE View View10_Kunden AS
+SELECT kunde.*, telefonnummern_kunden.telefonnummer, telefonnummern_kunden.art
+from kunde
+left join telefonnummern_kunden ON telefonnummern_kunden.Besitzer_K = kunde.KundenNummer 
+Order BY KundenNummer
+;
+
+----------------------------------------------------------------------------------
 -- END OF FILE
