@@ -164,7 +164,7 @@ Order BY rebsorte, jahrgang
  * and the generated revenue through the customer should be displayed in a table.
  */
 
-CREATE View View10_Kunden AS
+CREATE View View10_Kundenauswertung AS
 SELECT kunde.*, telefonnummern_kunden.telefonnummer, telefonnummern_kunden.art,
 COUNT (bestellung.erteilt_von) Anzahl_Bestellungen,
 SUM (bestellung.AnzahlSpeisen) Anzahl_Bestellte_Speisen,
@@ -185,7 +185,11 @@ ORDER BY kunde.kundennummer
  */
 
 CREATE View View11_GesamtumsatzDesTages AS
-SELECT SUM(bestellung.Preis)
+SELECT 
+COUNT (*) Anzahl_Bestellungen,
+SUM (bestellung.AnzahlSpeisen) verkaufte_Speisen,
+SUM (bestellung.AnzahlGetraenke) verkaufte_Getraenke,
+SUM (bestellung.Preis) Tagesumsatz
 from bestellung
 WHERE DATE(Zeitstempel) = CURRENT_DATE 	--use '2022-04-08' in this example to get some output
 ;
